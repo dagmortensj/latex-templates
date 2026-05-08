@@ -1,0 +1,165 @@
+% =================================================
+% MAIN DOCUMENT (HANDOUT TEMPLATE)
+% =================================================
+%
+% Physics / mathematics handouts and problem sheets.
+%
+% Typographic appearance is defined in handoutstyle.sty
+% and should not be altered here.
+%
+% =================================================
+
+
+\documentclass[11pt]{article}
+
+
+% =================================================
+% LOAD HANDOUT STYLE
+% =================================================
+\usepackage{handoutstyle}
+
+
+% =================================================
+% LANGUAGE
+% =================================================
+\usepackage[english]{babel}
+
+
+% =================================================
+% CUSTOM PACKAGES
+%
+% Add project-specific packages here.
+% Do not insert packages elsewhere in the file.
+% =================================================
+
+% --- Mathematics (defaults) ---
+\usepackage{amsmath, amssymb}
+
+% --- Figures ---
+\usepackage{graphicx}                % figures
+\graphicspath{{figures/}}            % figures live in figures/
+
+% --- Optional ---
+% \usepackage{physics}              % \dd, \ket, \bra, ...
+% \usepackage{tikz}                 % diagrams
+
+
+% =================================================
+% CUSTOM COMMANDS
+%
+% Project-specific macros.
+%
+% \separator inserts a thin red rule. Use between
+% content blocks (after exercises, between examples,
+% topic shifts within a section, etc.).
+% =================================================
+
+\newcommand{\separator}{\par\exerciserule}
+
+% \newcommand{\dd}{\mathrm{d}}
+% \newcommand{\Ham}{\mathcal{H}}
+
+
+% =================================================
+% METADATA
+% =================================================
+\title{Handout Title}
+\date{Spring 2026 $\cdot$ Course Name}
+
+
+% =================================================
+% DOCUMENT
+% =================================================
+\begin{document}
+
+\maketitle
+
+
+% =================================================
+% SECTION
+% =================================================
+\section{Energy and Conservation}
+
+A particle of mass $m$ moves in a one-dimensional potential
+$V(x)$. The total mechanical energy is
+\begin{equation}
+  E = \tfrac{1}{2} m v^2 + V(x),
+\end{equation}
+which is conserved when no external forces act.
+
+
+% =================================================
+% EXERCISE
+% =================================================
+\begin{exercise}
+Consider a particle of mass $m$ in the potential
+$V(x) = \tfrac{1}{2}kx^2$.
+
+\begin{enumerate}
+  \item Write down the equation of motion using Newton's
+        second law.
+  \item Show that
+        $E = \tfrac{1}{2}mv^2 + \tfrac{1}{2}kx^2$
+        is conserved along solutions.
+\end{enumerate}
+
+The result can be verified by differentiating $E$ with respect
+to time and using the equation of motion from part~(a).
+
+\begin{enumerate}[resume]
+  \item Find the angular frequency of small oscillations.
+\end{enumerate}
+\end{exercise}
+
+\separator
+
+
+% =================================================
+% EXERCISE
+% =================================================
+\begin{exercise}
+A block of mass $m$ slides down a frictionless inclined plane
+that makes an angle $\theta$ with the horizontal.
+
+\begin{enumerate}
+  \item Find the acceleration along the plane.
+  \item How long does it take to slide a distance $L$ from rest?
+  \item What is the speed at the bottom?
+\end{enumerate}
+\end{exercise}
+
+
+% =================================================
+% SECTION
+% =================================================
+\section{Circular Motion}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.5\linewidth]{Energy_levels}
+  \caption{Schematic figure for the topic.}
+  \label{fig:circular}
+\end{figure}
+
+In uniform circular motion, the centripetal acceleration has
+magnitude $a_c = v^2/r$, directed toward the center of the
+circle.
+
+
+% =================================================
+% EXERCISE
+% =================================================
+\begin{exercise}
+A satellite moves in a circular orbit at radius $r$ around a
+planet of mass $M$.
+
+\begin{enumerate}
+  \item Show that the orbital speed is $v = \sqrt{GM/r}$,
+        where $G$ is Newton's gravitational constant.
+  \item Express the orbital period $T$ in terms of $r$, $M$,
+        and $G$.
+\end{enumerate}
+\end{exercise}
+
+
+\end{document}

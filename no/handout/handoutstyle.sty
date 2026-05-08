@@ -1,0 +1,238 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handoutstyle}[2026/05/07 v1.1 Profesjonell handout-stil]
+
+% ============================================================
+% FILOSOFI
+%
+% Denne stilen er ment for:
+%  - fysikk- / matematikknotater
+%  - oppgavesett og notater (ikke artikler)
+%  - ren separasjon mellom innhold og oppsett
+%
+% Designprinsipper:
+%  - konservativ typografi
+%  - forutsigbar avstand
+%  - minimale redefineringer
+%  - ingen skjøre listehakk
+%
+% Når det er tvil, foretrekk stabilitet fremfor kløkt.
+% ============================================================
+
+
+% ============================================================
+% FONTKODING OG MIKROTYPOGRAFI
+% ============================================================
+%
+% Latin Modern er det trygge standardvalget for PDFLaTeX.
+% microtype forbedrer justering subtilt uten overraskelser.
+%
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+
+\RequirePackage[
+  expansion=true,
+  protrusion=true,
+  tracking=true
+]{microtype}
+
+
+% ============================================================
+% SIDEGEOMETRI
+% ============================================================
+%
+% A4-oppsett med romslige marger.
+% Optimalisert for utskrift og annotering.
+%
+\RequirePackage[
+  a4paper,
+  left=3.0cm,
+  right=3.0cm,
+  top=2.6cm,
+  bottom=3.0cm
+]{geometry}
+
+
+% ============================================================
+% AVSNITT- OG LINJEAVSTAND
+% ============================================================
+%
+% Klassiske boklignende avsnitt:
+%  - innrykk
+%  - ingen vertikal mellomrom mellom avsnitt
+%
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{0pt}
+
+% Litt avslappet linjeavstand for lesbarhet
+\RequirePackage{setspace}
+\setstretch{1.04}
+
+
+% ============================================================
+% SEKSJONSOVERSKRIFTER
+% ============================================================
+%
+% Seksjoner er bevisst stille:
+%  - ingen overdimensjonerte fonter
+%  - ingen dekorative streker
+%
+\RequirePackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries}
+  {\thesection.}{0.6em}{}
+
+\titlespacing*{\section}
+  {0pt}
+  {6ex plus 2ex minus .8ex}
+  {2ex plus .5ex}
+
+
+% ============================================================
+% SIDESTIL
+% ============================================================
+%
+% Enkle sider: ingen topptekst, sentrert sidetall.
+%
+\pagestyle{plain}
+
+
+% ============================================================
+% TITTELBLOKK
+% ============================================================
+%
+% Enkel, rolig tittelutforming.
+% Bruker \maketitle for robusthet.
+%
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}
+  \begin{center}
+    \vspace*{1em}
+    {\Large\normalfont\scshape\lsstyle \@title\par}
+    \vspace{1.6em}
+    {\footnotesize\normalfont\scshape \@date\par}
+    \vspace{3em}
+  \end{center}
+}
+\makeatother
+
+
+% ============================================================
+% FARGER
+% ============================================================
+%
+% Mørkerød er valgt for å være trygt for trykk og diskret.
+%
+\RequirePackage{xcolor}
+\definecolor{darkred}{RGB}{120,20,20}
+
+
+% ============================================================
+% OPPGAVE-SEPARATORLINJE
+% ============================================================
+%
+% Oppgaver innledes med en linje med samme bredde som
+% fotnotelinjen. Dette gir et visuelt signal uten å
+% konkurrere med seksjonsoverskrifter.
+%
+% \let\orig@footnoterule\footnoterule
+%   Tar vare på den opprinnelige fotnotelinjen før
+%   andre pakker eventuelt redefinerer \footnoterule,
+%   så vi kan gjenbruke bredden her uansett.
+%
+\makeatletter
+\let\orig@footnoterule\footnoterule
+\newcommand{\exerciserule}{%
+  \vspace{3.5ex plus 1.5ex minus .5ex}
+  {\color{darkred}\orig@footnoterule}
+  \vspace{1.2ex}
+}
+\makeatother
+
+
+% ============================================================
+% OPPGAVEOMGIVELSE
+% ============================================================
+%
+% Oppgaver er implementert med amsthm:
+%  - nummerert per seksjon (Oppgave 2.1, 2.2, ...)
+%  - lett innrykket via quote-omgivelsen
+%  - visuelt mindre prominent enn seksjonsoverskrifter
+%
+\RequirePackage{amsthm}
+
+% \newtheoremstyle-argumenter, i rekkefølge:
+%   avstand over, avstand under, brødtekstfont, innrykk,
+%   overskriftsfont, overskriftstegnsetting,
+%   avstand mellom overskrift og brødtekst, egen overskriftsspec.
+\newtheoremstyle{handoutex}
+  {1ex}              % avstand over
+  {1ex}              % avstand under
+  {\normalfont}      % brødtekstfont
+  {0pt}              % innrykk
+  {\bfseries}        % overskriftsfont
+  {}                 % overskriftstegnsetting
+  {\newline}         % avstand mellom overskrift og brødtekst
+  {}                 % egen overskriftsspec (tom = standard)
+
+\theoremstyle{handoutex}
+
+% Etikett for oppgaver. Overstyr før lasting for å lokalisere:
+%   \providecommand{\exercisename}{Exercise} % engelsk
+\providecommand{\exercisename}{Oppgave}
+
+\newtheorem{exerciseinner}{\exercisename}[section]
+\renewcommand{\theexerciseinner}{\thesection.\arabic{exerciseinner}}
+
+\newenvironment{exercise}
+{%
+  \par
+  \begin{quote}
+  \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+}
+{%
+  \end{exerciseinner}
+  \end{quote}
+  \vspace{3.5ex plus 1.5ex minus .8ex}
+}
+
+
+% ============================================================
+% DELOPPGAVER (a), b), c))
+% ============================================================
+%
+% Enumerering brukes kun for faktiske lister.
+% Forklarende tekst mellom deloppgaver bør skrives
+% som vanlig tekst utenfor enumerate-omgivelsen.
+%
+\RequirePackage{enumitem}
+
+\setlist[enumerate,1]{%
+  label=\alph*),
+  leftmargin=2.2em,
+  labelsep=0.6em,
+  itemsep=0.8ex,
+  parsep=0.8ex,
+  topsep=0.8ex
+}
+
+
+% ============================================================
+% HYPERLENKER
+% ============================================================
+%
+% Lastes sist. Mørkerøde lenker tilpasset trykk.
+%
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=darkred,
+  citecolor=darkred,
+  urlcolor=darkred
+}
+
+% ============================================================
+% SLUTT PÅ FIL
+% ============================================================
+\endinput

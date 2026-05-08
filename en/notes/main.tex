@@ -1,0 +1,213 @@
+% =================================================
+% MAIN DOCUMENT (NOTES TEMPLATE)
+% =================================================
+%
+% Long-form theoretical physics and mathematics notes.
+%
+% Typographic appearance is defined in notesstyle.sty
+% and should not be altered here.
+%
+% =================================================
+
+
+\documentclass[a4paper,11pt]{article}
+
+
+% =================================================
+% LOAD NOTES STYLE
+% =================================================
+\usepackage{notesstyle}
+
+
+% =================================================
+% LANGUAGE
+% =================================================
+\usepackage[english]{babel}
+
+
+% =================================================
+% CUSTOM PACKAGES
+%
+% Add project-specific packages here.
+% Do not insert packages elsewhere in the file.
+% =================================================
+
+% --- Mathematics (defaults) ---
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathtools}
+
+% --- Optional physics / math extensions ---
+% \usepackage{physics}              % \dd, \ket, \bra, \comm, ...
+% \usepackage{bm}                   % bold math symbols
+% \usepackage{slashed}              % Feynman slash
+% \usepackage{tensor}               % indexed tensors
+
+% --- Other ---
+\usepackage{graphicx}               % figures
+\graphicspath{{figures/}}           % figures live in figures/
+\usepackage{booktabs}               % tables
+% \usepackage{enumitem}             % list customization
+
+
+% =================================================
+% THEOREM ENVIRONMENTS
+% =================================================
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+
+% =================================================
+% CUSTOM COMMANDS
+%
+% Project-specific macros.
+% =================================================
+
+% \newcommand{\dd}{\mathrm{d}}
+% \newcommand{\ii}{\mathrm{i}}
+
+
+% =================================================
+% METADATA
+% =================================================
+\title{Notes Title}
+\author{Author Name}
+\date{\today}
+
+
+% =================================================
+% DOCUMENT
+% =================================================
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A short abstract introducing the content of these notes.
+\end{abstract}
+
+\tableofcontents
+\clearpage
+
+
+% =================================================
+\section{Setting}
+
+These notes develop a small piece of theoretical machinery to
+illustrate the structure of the template. The exposition follows
+the typical pattern of mathematical and physics notes: definitions,
+statements of results, short proofs, and worked examples interleaved
+with prose.
+
+Citations are rendered in brackets, e.g.\ \cite{example-article}, and
+multiple sources combine and compress to ranges
+automatically~\cite{example-article,example-book}.
+
+
+% =================================================
+\section{Definitions and Statements}
+
+\begin{definition}
+  Let $\mathcal{H}$ be a complex separable Hilbert space. A
+  \emph{state} is a unit vector $\psi \in \mathcal{H}$, considered
+  up to a phase factor $e^{i\theta}$.
+\end{definition}
+
+\begin{definition}
+  An \emph{observable} is a self-adjoint linear operator $\hat{A}$
+  acting on $\mathcal{H}$.
+\end{definition}
+
+The expectation value of an observable in a given state is defined by
+\begin{equation}
+  \langle A \rangle_\psi
+  = \langle \psi | \hat{A} | \psi \rangle .
+  \label{eq:expectation}
+\end{equation}
+
+\begin{theorem}
+  Expectation values of self-adjoint operators are real.
+\end{theorem}
+
+\begin{proof}
+  By definition,
+  $\overline{\langle A \rangle_\psi}
+  = \overline{\langle \psi | \hat{A} | \psi \rangle}
+  = \langle \psi | \hat{A}^\dagger | \psi \rangle
+  = \langle \psi | \hat{A} | \psi \rangle
+  = \langle A \rangle_\psi$,
+  where we used $\hat{A}^\dagger = \hat{A}$.
+\end{proof}
+
+\begin{remark}
+  The reality of expectation values is what makes self-adjoint
+  operators the natural mathematical model of observable quantities
+  in quantum mechanics.
+\end{remark}
+
+\subsection{Time Evolution}
+
+Time evolution in quantum mechanics is governed by the
+Schr\"odinger equation:
+\begin{equation}
+  i\hbar \frac{\partial \psi}{\partial t}
+  = \hat{H}\psi ,
+  \label{eq:schrodinger}
+\end{equation}
+where $\hat{H}$ is the Hamiltonian. For time-independent
+$\hat{H}$, equation~\eqref{eq:schrodinger} integrates to
+\begin{equation}
+  \psi(t) = e^{-i\hat{H}t/\hbar}\,\psi(0).
+\end{equation}
+
+
+% =================================================
+\section{Examples}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{Energy_levels}
+  \caption{Schematic energy level diagram.}
+  \label{fig:levels}
+\end{figure}
+
+Figure~\ref{fig:levels} shows a typical structure that recurs
+throughout the rest of these notes.
+
+\begin{table}[t]
+  \centering
+  \caption{Fundamental physical constants.}
+  \label{tab:constants}
+  \begin{tabular}{lcr}
+    \toprule
+    Quantity            & Symbol  & Value                         \\
+    \midrule
+    Speed of light      & $c$     & $2.998 \times 10^8$ m/s       \\
+    Planck's constant   & $\hbar$ & $1.055 \times 10^{-34}$ Js    \\
+    Elementary charge   & $e$     & $1.602 \times 10^{-19}$ C     \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+
+% =================================================
+\section{Closing}
+
+These notes are a template; the content above exists only to
+demonstrate typography. Replace it with your own material as the
+notes develop.
+
+
+% =================================================
+% BIBLIOGRAPHY
+% =================================================
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+
+\end{document}

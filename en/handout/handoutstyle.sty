@@ -1,0 +1,238 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handoutstyle}[2026/05/07 v1.1 Professional handout style]
+
+% ============================================================
+% PHILOSOPHY
+%
+% This style is intended for:
+%  - physics / mathematics handouts
+%  - problem sheets and notes (not articles)
+%  - clean separation between content and layout
+%
+% Design principles:
+%  - conservative typography
+%  - predictable spacing
+%  - minimal redefinitions
+%  - no fragile list hacks
+%
+% When in doubt, prefer stability over cleverness.
+% ============================================================
+
+
+% ============================================================
+% FONT ENCODING & MICROTYPOGRAPHY
+% ============================================================
+%
+% Latin Modern is the standard, safe default for PDFLaTeX.
+% microtype improves justification subtly without surprises.
+%
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+
+\RequirePackage[
+  expansion=true,
+  protrusion=true,
+  tracking=true
+]{microtype}
+
+
+% ============================================================
+% PAGE GEOMETRY
+% ============================================================
+%
+% A4 layout with generous margins.
+% Optimized for printed handouts and annotation.
+%
+\RequirePackage[
+  a4paper,
+  left=3.0cm,
+  right=3.0cm,
+  top=2.6cm,
+  bottom=3.0cm
+]{geometry}
+
+
+% ============================================================
+% PARAGRAPH & LINE SPACING
+% ============================================================
+%
+% Classic book-like paragraphs:
+%  - indented
+%  - no vertical paragraph skip
+%
+\setlength{\parindent}{15pt}
+\setlength{\parskip}{0pt}
+
+% Slightly relaxed line spacing for readability
+\RequirePackage{setspace}
+\setstretch{1.04}
+
+
+% ============================================================
+% SECTION HEADINGS
+% ============================================================
+%
+% Sections are intentionally quiet:
+%  - no oversized fonts
+%  - no decorative rules
+%
+\RequirePackage{titlesec}
+
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries}
+  {\thesection.}{0.6em}{}
+
+\titlespacing*{\section}
+  {0pt}
+  {6ex plus 2ex minus .8ex}
+  {2ex plus .5ex}
+
+
+% ============================================================
+% PAGE STYLE
+% ============================================================
+%
+% Plain pages: no headers, centered page number.
+%
+\pagestyle{plain}
+
+
+% ============================================================
+% TITLE BLOCK
+% ============================================================
+%
+% Simple, calm title layout.
+% Uses \maketitle for robustness.
+%
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}
+  \begin{center}
+    \vspace*{1em}
+    {\Large\normalfont\scshape\lsstyle \@title\par}
+    \vspace{1.6em}
+    {\footnotesize\normalfont\scshape \@date\par}
+    \vspace{3em}
+  \end{center}
+}
+\makeatother
+
+
+% ============================================================
+% COLORS
+% ============================================================
+%
+% Dark red chosen to be print-safe and unobtrusive.
+%
+\RequirePackage{xcolor}
+\definecolor{darkred}{RGB}{120,20,20}
+
+
+% ============================================================
+% EXERCISE SEPARATOR RULE
+% ============================================================
+%
+% Exercises are preceded by a rule identical in width
+% to the footnote rule. This provides a visual cue
+% without competing with section headings.
+%
+% \let\orig@footnoterule\footnoterule
+%   Saves the original footnote rule before any
+%   downstream package can redefine \footnoterule,
+%   so we can reuse its width here regardless.
+%
+\makeatletter
+\let\orig@footnoterule\footnoterule
+\newcommand{\exerciserule}{%
+  \vspace{3.5ex plus 1.5ex minus .5ex}
+  {\color{darkred}\orig@footnoterule}
+  \vspace{1.2ex}
+}
+\makeatother
+
+
+% ============================================================
+% EXERCISE ENVIRONMENT
+% ============================================================
+%
+% Exercises are implemented using amsthm:
+%  - numbered per section (Exercise 2.1, 2.2, ...)
+%  - slightly indented using a quote environment
+%  - visually less prominent than section headings
+%
+\RequirePackage{amsthm}
+
+% \newtheoremstyle arguments, in order:
+%   space above, space below, body font, indent,
+%   head font, head punctuation,
+%   space between head and body, custom head spec.
+\newtheoremstyle{handoutex}
+  {1ex}              % space above
+  {1ex}              % space below
+  {\normalfont}      % body font
+  {0pt}              % indent
+  {\bfseries}        % head font
+  {}                 % head punctuation
+  {\newline}         % space between head and body
+  {}                 % custom head spec (empty = default)
+
+\theoremstyle{handoutex}
+
+% Exercise label name. Override before loading to localize:
+%   \providecommand{\exercisename}{Oppgave} % Norwegian
+\providecommand{\exercisename}{Exercise}
+
+\newtheorem{exerciseinner}{\exercisename}[section]
+\renewcommand{\theexerciseinner}{\thesection.\arabic{exerciseinner}}
+
+\newenvironment{exercise}
+{%
+  \par
+  \begin{quote}
+  \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+}
+{%
+  \end{exerciseinner}
+  \end{quote}
+  \vspace{3.5ex plus 1.5ex minus .8ex}
+}
+
+
+% ============================================================
+% SUBPROBLEMS (a), b), c))
+% ============================================================
+%
+% Enumerations are used only for actual lists.
+% Explanatory prose between subproblems should be written
+% as normal text outside the enumerate environment.
+%
+\RequirePackage{enumitem}
+
+\setlist[enumerate,1]{%
+  label=\alph*),
+  leftmargin=2.2em,
+  labelsep=0.6em,
+  itemsep=0.8ex,
+  parsep=0.8ex,
+  topsep=0.8ex
+}
+
+
+% ============================================================
+% HYPERLINKS
+% ============================================================
+%
+% Loaded last. Dark red links suitable for print.
+%
+\RequirePackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=darkred,
+  citecolor=darkred,
+  urlcolor=darkred
+}
+
+% ============================================================
+% END OF FILE
+% ============================================================
+\endinput

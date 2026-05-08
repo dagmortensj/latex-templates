@@ -1,0 +1,157 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{classicstyle}[2026/05/07 v1.0 Classic article style]
+
+% =================================================
+% PHILOSOPHY
+%
+% Classic, clean article style. Defines formatting,
+% spacing, and helper packages. Font and math packages
+% are chosen in main.tex so each article can be tailored.
+% =================================================
+
+
+% =================================================
+% FONT ENCODING AND MICROTYPOGRAPHY
+%
+% The font itself is chosen in main.tex (mlmodern,
+% lmodern, stix2, ...). Here we set only T1 encoding
+% and microtypography that is useful regardless of font.
+% =================================================
+\RequirePackage[T1]{fontenc}
+\RequirePackage{microtype}
+
+
+% =================================================
+% PAGE GEOMETRY
+%
+% Symmetric 3.5 cm margins give a 14 cm text width —
+% slightly more spacious than the article default,
+% but still well within optimal readability for 12pt.
+% =================================================
+\RequirePackage{geometry}
+\geometry{a4paper, margin=3.5cm}
+
+
+% =================================================
+% PARAGRAPH AND LINE SPACING
+%
+% \linespread{1.2} gives roughly 1.2x the natural
+% baseline — comfortable for 12pt body text.
+% Hyphenation is disabled, so words are never broken
+% across lines.
+% =================================================
+\RequirePackage{setspace}
+\linespread{1.2}
+
+\RequirePackage[none]{hyphenat}
+
+
+% =================================================
+% EQUATION SPACING
+%
+% Half a centimetre above and below displayed
+% equations. Keeps math visually anchored to the
+% surrounding prose without crowding it.
+% =================================================
+\setlength{\abovedisplayskip}{0.5cm}
+\setlength{\abovedisplayshortskip}{0.5cm}
+\setlength{\belowdisplayskip}{0.5cm}
+\setlength{\belowdisplayshortskip}{0.5cm}
+
+
+% =================================================
+% TABLES
+%
+% booktabs gives professional horizontal rules
+% (\toprule, \midrule, \bottomrule — never vertical).
+% \arraystretch=1.7 adds vertical air between rows so
+% tables don't feel cramped at this body-text size.
+% =================================================
+\RequirePackage{booktabs}
+\renewcommand{\arraystretch}{1.7}
+
+
+% =================================================
+% CAPTIONS
+%
+% Hanging indent, small, bold label, italic text.
+% =================================================
+\RequirePackage[
+  hang,
+  small,
+  labelfont=bf,
+  up,
+  textfont=it,
+  up
+]{caption}
+
+
+% =================================================
+% COLORS AND GRAPHICS
+%
+% Figures are searched in ./figures/. You can then
+% write \includegraphics{filename} without specifying
+% the folder.
+% =================================================
+\RequirePackage[svgnames]{xcolor}
+\RequirePackage{graphicx}
+\graphicspath{{figures/}}
+
+
+% =================================================
+% LISTS AND BOXES
+%
+% enumitem  — fine-grained list customization
+%             (custom labels, spacing, [resume], ...)
+% tcolorbox — colored framed boxes for notes,
+%             definitions, warnings, etc.
+% =================================================
+\RequirePackage{enumitem}
+\RequirePackage{tcolorbox}
+
+
+% =================================================
+% FLOATING AND WRAPPED FIGURES
+%
+% float    — adds the [H] placement specifier
+%            (locked, "exactly here") for figures
+%            and tables
+% wrapfig  — text wrapping around small figures
+% subfig   — multiple sub-figures side by side
+% =================================================
+\RequirePackage{float}
+\RequirePackage{wrapfig}
+\RequirePackage{subfig}
+
+
+% =================================================
+% LINE BREAKING
+%
+% emergencystretch lets LaTeX stretch lines in
+% emergencies — fewer overfull boxes without manual
+% adjustment. hbadness=99999 quiets LaTeX's complaints
+% about underfull boxes.
+% =================================================
+\setlength{\emergencystretch}{3em}
+\hbadness=99999
+
+
+% =================================================
+% CITATIONS
+%
+% Numerical citations in square brackets, sorted and
+% compressed into ranges, e.g. \cite{a,b,c} -> [1-3].
+%
+% Usage:
+%   \cite{key}                [1]
+%   \cite{k1,k2,k3}           [1-3]
+%   \bibliographystyle{unsrtnat} in main.tex
+%   \bibliography{...}        in main.tex
+% =================================================
+\RequirePackage[numbers,sort&compress]{natbib}
+
+
+% =================================================
+% END OF FILE
+% =================================================
+\endinput
