@@ -49,12 +49,8 @@
 %
 % Project-specific macros.
 %
-% \separator inserts a thin red rule. Use between
-% content blocks (after exercises, between examples,
-% topic shifts within a section, etc.).
+% The \separator rule is provided by handoutstyle.sty.
 % =================================================
-
-\newcommand{\separator}{\par\exerciserule}
 
 % \newcommand{\dd}{\mathrm{d}}
 % \newcommand{\Ham}{\mathcal{H}}
@@ -87,6 +83,21 @@ $V(x)$. The total mechanical energy is
 \end{equation}
 which is conserved when no external forces act.
 
+\begin{definition}
+A force is \emph{conservative} if it can be written as the
+negative gradient of a potential, $F(x) = -\,\mathrm{d}V/\mathrm{d}x$.
+\end{definition}
+
+\begin{theorem}
+For a conservative force, the total mechanical energy $E$ is
+constant along any solution of the equation of motion.
+\end{theorem}
+
+\begin{remark}
+The converse fails in general: dissipative systems admit no
+such potential, and $E$ is not conserved.
+\end{remark}
+
 
 % =================================================
 % EXERCISE
@@ -95,20 +106,20 @@ which is conserved when no external forces act.
 Consider a particle of mass $m$ in the potential
 $V(x) = \tfrac{1}{2}kx^2$.
 
-\begin{enumerate}
+\begin{subproblems}
   \item Write down the equation of motion using Newton's
         second law.
   \item Show that
         $E = \tfrac{1}{2}mv^2 + \tfrac{1}{2}kx^2$
         is conserved along solutions.
-\end{enumerate}
+\end{subproblems}
 
 The result can be verified by differentiating $E$ with respect
 to time and using the equation of motion from part~(a).
 
-\begin{enumerate}[resume]
+\begin{subproblems}[resume]
   \item Find the angular frequency of small oscillations.
-\end{enumerate}
+\end{subproblems}
 \end{exercise}
 
 \separator
@@ -121,11 +132,11 @@ to time and using the equation of motion from part~(a).
 A block of mass $m$ slides down a frictionless inclined plane
 that makes an angle $\theta$ with the horizontal.
 
-\begin{enumerate}
+\begin{subproblems}
   \item Find the acceleration along the plane.
   \item How long does it take to slide a distance $L$ from rest?
   \item What is the speed at the bottom?
-\end{enumerate}
+\end{subproblems}
 \end{exercise}
 
 
@@ -153,12 +164,12 @@ circle.
 A satellite moves in a circular orbit at radius $r$ around a
 planet of mass $M$.
 
-\begin{enumerate}
+\begin{subproblems}
   \item Show that the orbital speed is $v = \sqrt{GM/r}$,
         where $G$ is Newton's gravitational constant.
   \item Express the orbital period $T$ in terms of $r$, $M$,
         and $G$.
-\end{enumerate}
+\end{subproblems}
 \end{exercise}
 
 

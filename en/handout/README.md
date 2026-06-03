@@ -1,7 +1,8 @@
 # handout-template
 
 LaTeX template for physics and mathematics handouts and problem sheets.
-Calm typography, exercise environment, dark red separator rules.
+Calm, classic typography with theorem and exercise environments, lettered
+subproblems, and dark red separator rules.
 
 ## Files
 
@@ -34,18 +35,39 @@ if you ever do.)
 \begin{exercise}
 Prompt for the exercise.
 
-\begin{enumerate}
+\begin{subproblems}
   \item First subproblem.
   \item Second subproblem.
-\end{enumerate}
+\end{subproblems}
 \end{exercise}
 ```
 
 Exercises are numbered per section (e.g. Exercise 2.1, 2.2)
 and use lowercase letter labels for subproblems (a, b, c).
+The `subproblems` environment leaves ordinary `enumerate`
+lists untouched for normal use.
 
-Use `\begin{enumerate}[resume]` to continue the same letter
+Use `\begin{subproblems}[resume]` to continue the same letter
 sequence after explanatory prose between subproblems.
+
+### Theorem-like environments
+
+```latex
+\begin{theorem}
+  Statement of the theorem.
+\end{theorem}
+
+\begin{definition}
+  Definition text.
+\end{definition}
+
+\begin{remark}
+  A remark.
+\end{remark}
+```
+
+All three share a single counter scoped to the section,
+e.g. Theorem 1.1, Definition 1.2, Remark 1.3.
 
 ### Separator
 
@@ -89,13 +111,16 @@ examples, or at a topic shift within a section.
 - **Title block:** small caps, letterspaced, centered
 - **Hyperlinks and rules:** dark red, print-safe
 
-## Localizing the exercise label
+## Localizing labels
 
-`handoutstyle.sty` defines `\exercisename` as `Exercise` by
-default. To change it (e.g. for a Norwegian handout), override
-before loading the style:
+`handoutstyle.sty` sets the structured-environment labels in
+English by default. Override any of them *before* loading the
+style (e.g. for a Norwegian handout):
 
 ```latex
+\providecommand{\theoremname}{Teorem}
+\providecommand{\definitionname}{Definisjon}
+\providecommand{\remarkname}{Merknad}
 \providecommand{\exercisename}{Oppgave}
 \usepackage{handoutstyle}
 ```

@@ -1,13 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{handoutstyle}[2026/05/07 v1.1 Professional handout style]
+\ProvidesPackage{handoutstyle}[2026/06/02 v1.2 Handout style — calm classic typography for problem sheets]
 
 % ============================================================
 % PHILOSOPHY
 %
-% This style is intended for:
-%  - physics / mathematics handouts
-%  - problem sheets and notes (not articles)
-%  - clean separation between content and layout
+% This style is for physics / mathematics handouts and
+% problem sheets (not articles or monographs).
+%
+% Typographically it belongs to the same family as the
+% notes and book styles — calm, classic Latin Modern —
+% but lighter: quiet headings, generous margins, and no
+% table of contents or bibliography by default.
 %
 % Design principles:
 %  - conservative typography
@@ -80,7 +83,7 @@
 
 \titleformat{\section}
   {\normalfont\normalsize\bfseries}
-  {\thesection.}{0.6em}{}
+  {\thesection}{0.6em}{}
 
 \titlespacing*{\section}
   {0pt}
@@ -129,21 +132,60 @@
 
 
 % ============================================================
-% EXERCISE SEPARATOR RULE
+% THEOREM-LIKE ENVIRONMENTS
 % ============================================================
 %
-% Exercises are preceded by a rule identical in width
-% to the footnote rule. This provides a visual cue
-% without competing with section headings.
+% Standard structured environments for mathematical
+% handouts:
+%   theorem      numbered per section (Theorem 1.1, ...)
+%   definition   shares the theorem counter
+%   remark       shares the theorem counter
+%
+% amsthm also underpins the exercise environment below,
+% so it is loaded once here.
+%
+% Label names use \providecommand so they can be
+% localized before this style is loaded, e.g.
+%   \providecommand{\theoremname}{Teorem}
+% (matching the \exercisename hook used below).
+%
+\RequirePackage{amsthm}
+
+\providecommand{\theoremname}{Theorem}
+\providecommand{\definitionname}{Definition}
+\providecommand{\remarkname}{Remark}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\theoremname}[section]
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{\definitionname}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{\remarkname}
+
+
+% ============================================================
+% SEPARATOR RULE
+% ============================================================
+%
+% A rule identical in width to the footnote rule, set in
+% dark red. Use between content blocks (after exercises,
+% between examples, topic shifts within a section, ...).
+% A visual cue that does not compete with section headings.
 %
 % \let\orig@footnoterule\footnoterule
 %   Saves the original footnote rule before any
 %   downstream package can redefine \footnoterule,
 %   so we can reuse its width here regardless.
 %
+% The leading \par closes any open paragraph, so \separator
+% is safe to call directly after running text.
+%
 \makeatletter
 \let\orig@footnoterule\footnoterule
-\newcommand{\exerciserule}{%
+\newcommand{\separator}{%
+  \par
   \vspace{3.5ex plus 1.5ex minus .5ex}
   {\color{darkred}\orig@footnoterule}
   \vspace{1.2ex}
@@ -155,13 +197,11 @@
 % EXERCISE ENVIRONMENT
 % ============================================================
 %
-% Exercises are implemented using amsthm:
+% Exercises are implemented using amsthm (loaded above):
 %  - numbered per section (Exercise 2.1, 2.2, ...)
 %  - slightly indented using a quote environment
 %  - visually less prominent than section headings
 %
-\RequirePackage{amsthm}
-
 % \newtheoremstyle arguments, in order:
 %   space above, space below, body font, indent,
 %   head font, head punctuation,
@@ -176,15 +216,26 @@
   {\newline}         % space between head and body
   {}                 % custom head spec (empty = default)
 
-\theoremstyle{handoutex}
-
 % Exercise label name. Override before loading to localize:
 %   \providecommand{\exercisename}{Oppgave} % Norwegian
 \providecommand{\exercisename}{Exercise}
 
+\theoremstyle{handoutex}
 \newtheorem{exerciseinner}{\exercisename}[section]
 \renewcommand{\theexerciseinner}{\thesection.\arabic{exerciseinner}}
 
+% Restore amsthm's conventional default, so any extra
+% theorem-like environment added later (in main.tex) starts
+% from \theoremstyle{plain} rather than the exercise style.
+\theoremstyle{plain}
+
+% The amsthm style sets the body on a new line after the bold
+% label (the {\newline} head/body separator above). The
+% \leavevmode\par\vspace{-2ex} then pulls the body up to a
+% tight gap under the label. -2ex is font-relative, so it
+% tracks the line height across sizes. (A custom head spec
+% was tried instead, but it conflicts with the quote wrapper;
+% this is the stable form.)
 \newenvironment{exercise}
 {%
   \par
@@ -202,13 +253,21 @@
 % SUBPROBLEMS (a), b), c))
 % ============================================================
 %
-% Enumerations are used only for actual lists.
+% Subproblems use a dedicated 'subproblems' list rather than
+% redefining enumerate, so ordinary numbered lists remain
+% available for normal use.
+%
 % Explanatory prose between subproblems should be written
-% as normal text outside the enumerate environment.
+% as normal text outside the environment; numbering is then
+% picked up again with \begin{subproblems}[resume].
 %
 \RequirePackage{enumitem}
 
-\setlist[enumerate,1]{%
+% \newlist{<name>}{<type>}{<max depth>}
+% Defines 'subproblems' as an enumerate-type list, one level.
+\newlist{subproblems}{enumerate}{1}
+
+\setlist[subproblems]{%
   label=\alph*),
   leftmargin=2.2em,
   labelsep=0.6em,

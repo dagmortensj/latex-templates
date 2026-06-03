@@ -1,7 +1,8 @@
 # handout-mal
 
 LaTeX-mal for fysikk- og matematikknotater og oppgavesett.
-Rolig typografi, oppgaveomgivelse, mørkerøde separatorlinjer.
+Rolig, klassisk typografi med teorem- og oppgaveomgivelser,
+delte deloppgaver med bokstaver, og mørkerøde separatorlinjer.
 
 ## Filer
 
@@ -31,21 +32,42 @@ hvis du noen gang skulle trenge det.)
 ### Oppgaver
 
 ```latex
-\begin{exercise}
+\begin{oppgave}
 Oppgavetekst.
 
-\begin{enumerate}
+\begin{deloppgaver}
   \item Første deloppgave.
   \item Andre deloppgave.
-\end{enumerate}
-\end{exercise}
+\end{deloppgaver}
+\end{oppgave}
 ```
 
 Oppgaver nummereres per seksjon (f.eks. Oppgave 2.1, 2.2)
 og bruker små bokstavetiketter for deloppgaver (a, b, c).
+`deloppgaver`-omgivelsen lar vanlige `enumerate`-lister være
+urørt til vanlig bruk.
 
-Bruk `\begin{enumerate}[resume]` for å fortsette samme
+Bruk `\begin{deloppgaver}[resume]` for å fortsette samme
 bokstavsekvens etter forklarende tekst mellom deloppgaver.
+
+### Teoremomgivelser
+
+```latex
+\begin{teorem}
+  Formuleringen av teoremet.
+\end{teorem}
+
+\begin{definisjon}
+  Definisjonstekst.
+\end{definisjon}
+
+\begin{merknad}
+  En merknad.
+\end{merknad}
+```
+
+Alle tre deler én teller knyttet til seksjonen,
+f.eks. Teorem 1.1, Definisjon 1.2, Merknad 1.3.
 
 ### Separator
 
@@ -88,14 +110,3 @@ mellom eksempler, eller ved temaskifter innen en seksjon.
 - **Seksjoner:** stille, normal størrelse i fet (ingen overdimensjonerte fonter eller streker)
 - **Tittelblokk:** kapiteler, sperret, sentrert
 - **Hyperlenker og linjer:** mørkerøde, trygt for trykk
-
-## Lokalisere oppgaveetiketten
-
-`handoutstyle.sty` definerer `\exercisename` som `Oppgave` som
-standard. For å endre den (f.eks. for et engelsk handout),
-overstyr før stilen lastes:
-
-```latex
-\providecommand{\exercisename}{Exercise}
-\usepackage{handoutstyle}
-```

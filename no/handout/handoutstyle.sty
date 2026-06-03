@@ -1,30 +1,33 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{handoutstyle}[2026/05/07 v1.1 Profesjonell handout-stil]
+\ProvidesPackage{handoutstyle}[2026/06/02 v1.2 Handout-stil — rolig klassisk typografi for oppgavesett]
 
 % ============================================================
 % FILOSOFI
 %
-% Denne stilen er ment for:
-%  - fysikk- / matematikknotater
-%  - oppgavesett og notater (ikke artikler)
-%  - ren separasjon mellom innhold og oppsett
+% Denne stilen er for fysikk- / matematikknotater og
+% oppgavesett (ikke artikler eller monografier).
+%
+% Typografisk hører den til samme familie som notat- og
+% bokstilen — rolig, klassisk Latin Modern — men lettere:
+% stille overskrifter, romslige marger, og ingen
+% innholdsfortegnelse eller bibliografi som standard.
 %
 % Designprinsipper:
 %  - konservativ typografi
 %  - forutsigbar avstand
-%  - minimale redefineringer
-%  - ingen skjøre listehakk
+%  - minimale redefinisjoner
+%  - ingen skjøre liste-triks
 %
-% Når det er tvil, foretrekk stabilitet fremfor kløkt.
+% Når du er i tvil, foretrekk stabilitet framfor lurerier.
 % ============================================================
 
 
 % ============================================================
-% FONTKODING OG MIKROTYPOGRAFI
+% FONTKODING & MIKROTYPOGRAFI
 % ============================================================
 %
-% Latin Modern er det trygge standardvalget for PDFLaTeX.
-% microtype forbedrer justering subtilt uten overraskelser.
+% Latin Modern er den standard, trygge defaulten for PDFLaTeX.
+% microtype forbedrer justeringen diskret og uten overraskelser.
 %
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
@@ -53,17 +56,17 @@
 
 
 % ============================================================
-% AVSNITT- OG LINJEAVSTAND
+% AVSNITT & LINJEAVSTAND
 % ============================================================
 %
-% Klassiske boklignende avsnitt:
+% Klassiske boklige avsnitt:
 %  - innrykk
-%  - ingen vertikal mellomrom mellom avsnitt
+%  - ingen vertikal avsnittsavstand
 %
 \setlength{\parindent}{15pt}
 \setlength{\parskip}{0pt}
 
-% Litt avslappet linjeavstand for lesbarhet
+% Litt slakkere linjeavstand for lesbarhet
 \RequirePackage{setspace}
 \setstretch{1.04}
 
@@ -80,7 +83,7 @@
 
 \titleformat{\section}
   {\normalfont\normalsize\bfseries}
-  {\thesection.}{0.6em}{}
+  {\thesection}{0.6em}{}
 
 \titlespacing*{\section}
   {0pt}
@@ -101,7 +104,7 @@
 % TITTELBLOKK
 % ============================================================
 %
-% Enkel, rolig tittelutforming.
+% Enkelt, rolig titteloppsett.
 % Bruker \maketitle for robusthet.
 %
 \makeatletter
@@ -122,28 +125,60 @@
 % FARGER
 % ============================================================
 %
-% Mørkerød er valgt for å være trygt for trykk og diskret.
+% Mørkerød valgt for å være trygg for trykk og diskret.
 %
 \RequirePackage{xcolor}
 \definecolor{darkred}{RGB}{120,20,20}
 
 
 % ============================================================
-% OPPGAVE-SEPARATORLINJE
+% TEOREMOMGIVELSER
 % ============================================================
 %
-% Oppgaver innledes med en linje med samme bredde som
-% fotnotelinjen. Dette gir et visuelt signal uten å
-% konkurrere med seksjonsoverskrifter.
+% Standard strukturerte omgivelser for matematiske handouts:
+%   teorem       nummerert per seksjon (Teorem 1.1, ...)
+%   definisjon   deler teller med teorem
+%   merknad      deler teller med teorem
+%
+% amsthm ligger også til grunn for oppgaveomgivelsen nedenfor,
+% så den lastes én gang her. Etikettene er på norsk; bevis-
+% etiketten settes også her.
+%
+\RequirePackage{amsthm}
+
+\theoremstyle{plain}
+\newtheorem{teorem}{Teorem}[section]
+
+\theoremstyle{definition}
+\newtheorem{definisjon}[teorem]{Definisjon}
+
+\theoremstyle{remark}
+\newtheorem{merknad}[teorem]{Merknad}
+
+\renewcommand{\proofname}{Bevis}
+
+
+% ============================================================
+% SEPARATORLINJE
+% ============================================================
+%
+% En linje med samme bredde som fotnotelinjen, satt i
+% mørkerød. Bruk mellom innholdsblokker (etter oppgaver,
+% mellom eksempler, temaskifter innen en seksjon, ...).
+% Et visuelt signal som ikke konkurrerer med overskriftene.
 %
 % \let\orig@footnoterule\footnoterule
-%   Tar vare på den opprinnelige fotnotelinjen før
-%   andre pakker eventuelt redefinerer \footnoterule,
-%   så vi kan gjenbruke bredden her uansett.
+%   Lagrer den opprinnelige fotnotelinjen før en senere
+%   pakke kan redefinere \footnoterule, så vi kan gjenbruke
+%   bredden her uansett.
+%
+% Den innledende \par lukker et åpent avsnitt, så \separator
+% er trygg å kalle rett etter løpende tekst.
 %
 \makeatletter
 \let\orig@footnoterule\footnoterule
-\newcommand{\exerciserule}{%
+\newcommand{\separator}{%
+  \par
   \vspace{3.5ex plus 1.5ex minus .5ex}
   {\color{darkred}\orig@footnoterule}
   \vspace{1.2ex}
@@ -155,44 +190,48 @@
 % OPPGAVEOMGIVELSE
 % ============================================================
 %
-% Oppgaver er implementert med amsthm:
+% Oppgaver er implementert med amsthm (lastet ovenfor):
 %  - nummerert per seksjon (Oppgave 2.1, 2.2, ...)
-%  - lett innrykket via quote-omgivelsen
-%  - visuelt mindre prominent enn seksjonsoverskrifter
+%  - lett innrykket via en quote-omgivelse
+%  - visuelt mindre framtredende enn seksjonsoverskrifter
 %
-\RequirePackage{amsthm}
-
 % \newtheoremstyle-argumenter, i rekkefølge:
-%   avstand over, avstand under, brødtekstfont, innrykk,
-%   overskriftsfont, overskriftstegnsetting,
-%   avstand mellom overskrift og brødtekst, egen overskriftsspec.
+%   avstand over, avstand under, kroppsfont, innrykk,
+%   hodefont, hodetegnsetting,
+%   avstand mellom hode og kropp, egendefinert hodespesifikasjon.
 \newtheoremstyle{handoutex}
   {1ex}              % avstand over
   {1ex}              % avstand under
-  {\normalfont}      % brødtekstfont
+  {\normalfont}      % kroppsfont
   {0pt}              % innrykk
-  {\bfseries}        % overskriftsfont
-  {}                 % overskriftstegnsetting
-  {\newline}         % avstand mellom overskrift og brødtekst
-  {}                 % egen overskriftsspec (tom = standard)
+  {\bfseries}        % hodefont
+  {}                 % hodetegnsetting
+  {\newline}         % avstand mellom hode og kropp
+  {}                 % egendefinert hodespesifikasjon (tom = standard)
 
 \theoremstyle{handoutex}
+\newtheorem{oppgaveinner}{Oppgave}[section]
+\renewcommand{\theoppgaveinner}{\thesection.\arabic{oppgaveinner}}
 
-% Etikett for oppgaver. Overstyr før lasting for å lokalisere:
-%   \providecommand{\exercisename}{Exercise} % engelsk
-\providecommand{\exercisename}{Oppgave}
+% Gjenopprett amsthms vanlige standard, så en eventuell
+% teoremomgivelse lagt til senere (i main.tex) starter fra
+% \theoremstyle{plain} i stedet for oppgavestilen.
+\theoremstyle{plain}
 
-\newtheorem{exerciseinner}{\exercisename}[section]
-\renewcommand{\theexerciseinner}{\thesection.\arabic{exerciseinner}}
-
-\newenvironment{exercise}
+% amsthm-stilen setter kroppen på en ny linje etter den fete
+% etiketten ({\newline}-skillet over). \leavevmode\par\vspace{-2ex}
+% trekker så kroppen opp til et tett mellomrom under etiketten.
+% -2ex er font-relativ, så den følger linjehøyden på tvers av
+% størrelser. (En egendefinert hodespesifikasjon ble forsøkt,
+% men kolliderer med quote-innpakningen; dette er den stabile formen.)
+\newenvironment{oppgave}
 {%
   \par
   \begin{quote}
-  \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+  \begin{oppgaveinner}\leavevmode\par\vspace{-2ex}
 }
 {%
-  \end{exerciseinner}
+  \end{oppgaveinner}
   \end{quote}
   \vspace{3.5ex plus 1.5ex minus .8ex}
 }
@@ -202,13 +241,21 @@
 % DELOPPGAVER (a), b), c))
 % ============================================================
 %
-% Enumerering brukes kun for faktiske lister.
-% Forklarende tekst mellom deloppgaver bør skrives
-% som vanlig tekst utenfor enumerate-omgivelsen.
+% Deloppgaver bruker en egen 'deloppgaver'-liste i stedet for
+% å redefinere enumerate, så vanlige nummererte lister fortsatt
+% er tilgjengelige til vanlig bruk.
+%
+% Forklarende tekst mellom deloppgaver skrives som vanlig tekst
+% utenfor omgivelsen; nummereringen gjenopptas så med
+% \begin{deloppgaver}[resume].
 %
 \RequirePackage{enumitem}
 
-\setlist[enumerate,1]{%
+% \newlist{<navn>}{<type>}{<maks dybde>}
+% Definerer 'deloppgaver' som en enumerate-type liste, ett nivå.
+\newlist{deloppgaver}{enumerate}{1}
+
+\setlist[deloppgaver]{%
   label=\alph*),
   leftmargin=2.2em,
   labelsep=0.6em,
@@ -222,7 +269,7 @@
 % HYPERLENKER
 % ============================================================
 %
-% Lastes sist. Mørkerøde lenker tilpasset trykk.
+% Lastet til slutt. Mørkerøde lenker, egnet for trykk.
 %
 \RequirePackage{hyperref}
 \hypersetup{

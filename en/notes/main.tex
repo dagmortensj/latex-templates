@@ -33,7 +33,9 @@
 % =================================================
 
 % --- Mathematics (defaults) ---
-\usepackage{amsmath, amssymb, amsthm}
+% amsthm and the theorem/definition/remark environments
+% are provided by notesstyle.sty.
+\usepackage{amsmath, amssymb}
 \usepackage{mathtools}
 
 % --- Optional physics / math extensions ---
@@ -47,19 +49,6 @@
 \graphicspath{{figures/}}           % figures live in figures/
 \usepackage{booktabs}               % tables
 % \usepackage{enumitem}             % list customization
-
-
-% =================================================
-% THEOREM ENVIRONMENTS
-% =================================================
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
 
 
 % =================================================
@@ -88,10 +77,15 @@
 \maketitle
 
 \begin{abstract}
-A short abstract introducing the content of these notes.
+These notes develop a small piece of theoretical machinery and
+work through its consequences in detail. The exposition is kept
+self-contained, with definitions, statements, short proofs, and
+worked examples interleaved with prose. The closing sections
+collect a few exercises for practice.
 \end{abstract}
 
-\tableofcontents
+\clearpage
+\framedtoc
 \clearpage
 
 
@@ -165,6 +159,12 @@ $\hat{H}$, equation~\eqref{eq:schrodinger} integrates to
   \psi(t) = e^{-i\hat{H}t/\hbar}\,\psi(0).
 \end{equation}
 
+\subsubsection{Stationary states}
+A \emph{stationary state} is an eigenstate of $\hat{H}$; its time
+dependence is a pure phase, so every expectation value is constant
+in time. Run-in headings like this one mark the lowest structural
+level and are kept out of the table of contents.
+
 
 % =================================================
 \section{Examples}
@@ -177,9 +177,10 @@ $\hat{H}$, equation~\eqref{eq:schrodinger} integrates to
 \end{figure}
 
 Figure~\ref{fig:levels} shows a typical structure that recurs
-throughout the rest of these notes.
+throughout the rest of these notes. A few fundamental constants
+are collected in Table~\ref{tab:constants} for reference.
 
-\begin{table}[t]
+\begin{table}[ht]
   \centering
   \caption{Fundamental physical constants.}
   \label{tab:constants}
@@ -193,6 +194,43 @@ throughout the rest of these notes.
     \bottomrule
   \end{tabular}
 \end{table}
+
+
+% =================================================
+\section{Exercises}
+
+Notes can carry problems alongside the exposition. The
+\verb|exercise| environment is numbered per section and is
+visually separated from the surrounding text by
+\verb|\separator|. Subproblems use the \verb|subproblems|
+environment, which labels parts a), b), c) without affecting
+ordinary \verb|enumerate| lists.
+
+\separator
+
+\begin{exercise}
+  Show that the eigenvalues of a self-adjoint operator
+  $\hat{A}$ are real, and that eigenvectors belonging to
+  distinct eigenvalues are orthogonal.
+\end{exercise}
+
+\begin{exercise}
+  Consider a particle in a one-dimensional infinite square
+  well of width $L$.
+  \begin{subproblems}
+    \item Write down the normalized energy eigenfunctions.
+    \item Compute the energy levels $E_n$.
+  \end{subproblems}
+
+  The remaining parts build on the spectrum found above; use
+  the result from part~(b) when sketching the densities.
+
+  \begin{subproblems}[resume]
+    \item Sketch the probability density for $n = 1, 2, 3$.
+    \item Compute the expectation value $\langle x \rangle$ in
+          the ground state.
+  \end{subproblems}
+\end{exercise}
 
 
 % =================================================

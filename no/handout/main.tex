@@ -49,12 +49,8 @@
 %
 % Prosjektspesifikke makroer.
 %
-% \separator setter inn en tynn rød linje. Bruk mellom
-% innholdsblokker (etter oppgaver, mellom eksempler,
-% temaskifter innen en seksjon, osv.).
+% \separator-linjen leveres av handoutstyle.sty.
 % =================================================
-
-\newcommand{\separator}{\par\exerciserule}
 
 % \newcommand{\dd}{\mathrm{d}}
 % \newcommand{\Ham}{\mathcal{H}}
@@ -63,7 +59,7 @@
 % =================================================
 % METADATA
 % =================================================
-\title{Notattittel}
+\title{Handouttittel}
 \date{Våren 2026 $\cdot$ Kursnavn}
 
 
@@ -87,29 +83,44 @@ potensial $V(x)$. Den totale mekaniske energien er
 \end{equation}
 som er bevart når ingen ytre krefter virker.
 
+\begin{definisjon}
+En kraft er \emph{konservativ} dersom den kan skrives som den
+negative gradienten av et potensial, $F(x) = -\,\mathrm{d}V/\mathrm{d}x$.
+\end{definisjon}
+
+\begin{teorem}
+For en konservativ kraft er den totale mekaniske energien $E$
+konstant langs enhver løsning av bevegelsesligningen.
+\end{teorem}
+
+\begin{merknad}
+Det omvendte holder ikke generelt: dissipative systemer har
+ikke noe slikt potensial, og $E$ er ikke bevart.
+\end{merknad}
+
 
 % =================================================
 % OPPGAVE
 % =================================================
-\begin{exercise}
+\begin{oppgave}
 Betrakt en partikkel med masse $m$ i potensialet
 $V(x) = \tfrac{1}{2}kx^2$.
 
-\begin{enumerate}
+\begin{deloppgaver}
   \item Skriv opp bevegelsesligningen ved hjelp av Newtons
         andre lov.
   \item Vis at
         $E = \tfrac{1}{2}mv^2 + \tfrac{1}{2}kx^2$
         er bevart langs løsningene.
-\end{enumerate}
+\end{deloppgaver}
 
 Resultatet kan verifiseres ved å derivere $E$ med hensyn på
 tid og bruke bevegelsesligningen fra deloppgave~(a).
 
-\begin{enumerate}[resume]
+\begin{deloppgaver}[resume]
   \item Finn vinkelfrekvensen for små svingninger.
-\end{enumerate}
-\end{exercise}
+\end{deloppgaver}
+\end{oppgave}
 
 \separator
 
@@ -117,16 +128,16 @@ tid og bruke bevegelsesligningen fra deloppgave~(a).
 % =================================================
 % OPPGAVE
 % =================================================
-\begin{exercise}
+\begin{oppgave}
 En kloss med masse $m$ glir nedover et friksjonsfritt
 skråplan som danner vinkelen $\theta$ med horisontalen.
 
-\begin{enumerate}
+\begin{deloppgaver}
   \item Finn akselerasjonen langs skråplanet.
   \item Hvor lang tid tar det å gli en strekning $L$ fra ro?
   \item Hva er farten ved bunnen?
-\end{enumerate}
-\end{exercise}
+\end{deloppgaver}
+\end{oppgave}
 
 
 % =================================================
@@ -148,16 +159,16 @@ størrelsen $a_s = v^2/r$, rettet inn mot sentrum av sirkelen.
 % =================================================
 % OPPGAVE
 % =================================================
-\begin{exercise}
+\begin{oppgave}
 En satellitt går i en sirkulær bane med radius $r$ rundt en
 planet med masse $M$.
 
-\begin{enumerate}
+\begin{deloppgaver}
   \item Vis at banehastigheten er $v = \sqrt{GM/r}$, hvor
         $G$ er Newtons gravitasjonskonstant.
   \item Uttrykk omløpstiden $T$ ved $r$, $M$ og $G$.
-\end{enumerate}
-\end{exercise}
+\end{deloppgaver}
+\end{oppgave}
 
 
 \end{document}

@@ -4,7 +4,7 @@
 %
 % Langformede notater i teoretisk fysikk og matematikk.
 %
-% Det typografiske utseendet er definert i notesstyle.sty
+% Det typografiske utseendet er definert i notatstil.sty
 % og bør ikke endres her.
 %
 % =================================================
@@ -33,7 +33,9 @@
 % =================================================
 
 % --- Matematikk (standard) ---
-\usepackage{amsmath, amssymb, amsthm}
+% amsthm og teorem-/definisjon-/merknad-omgivelsene
+% leveres av notatstil.sty.
+\usepackage{amsmath, amssymb}
 \usepackage{mathtools}
 
 % --- Valgfrie fysikk- / matematikkutvidelser ---
@@ -47,22 +49,6 @@
 \graphicspath{{figurer/}}           % figurer ligger i figurer/
 \usepackage{booktabs}               % tabeller
 % \usepackage{enumitem}             % listetilpasning
-
-
-% =================================================
-% TEOREMOMGIVELSER
-% =================================================
-\theoremstyle{plain}
-\newtheorem{teorem}{Teorem}[section]
-
-\theoremstyle{definition}
-\newtheorem{definisjon}[teorem]{Definisjon}
-
-\theoremstyle{remark}
-\newtheorem{merknad}[teorem]{Merknad}
-
-% Norsk navn på proof-omgivelsen
-\renewcommand{\proofname}{Bevis}
 
 
 % =================================================
@@ -91,10 +77,15 @@
 \maketitle
 
 \begin{abstract}
-Et kort sammendrag som introduserer innholdet i disse notatene.
+Disse notatene utvikler en liten bit av teoretisk maskineri og
+arbeider gjennom konsekvensene i detalj. Framstillingen holdes
+selvstendig, med definisjoner, formuleringer, korte bevis og
+gjennomgåtte eksempler vekslet med prosa. De avsluttende
+seksjonene samler noen oppgaver til øving.
 \end{abstract}
 
-\tableofcontents
+\clearpage
+\framedtoc
 \clearpage
 
 
@@ -102,7 +93,7 @@ Et kort sammendrag som introduserer innholdet i disse notatene.
 \section{Bakgrunn}
 
 Disse notatene utvikler en liten bit av teoretisk maskineri
-for å illustrere strukturen i malen. Fremstillingen følger
+for å illustrere strukturen i malen. Framstillingen følger
 det typiske mønsteret for matematikk- og fysikknotater:
 definisjoner, formuleringer av resultater, korte bevis, og
 gjennomgåtte eksempler vekslet med prosa.
@@ -168,6 +159,12 @@ $\hat{H}$ integrerer ligning~\eqref{eq:schrodinger} til
   \psi(t) = e^{-i\hat{H}t/\hbar}\,\psi(0).
 \end{equation}
 
+\subsubsection{Stasjonære tilstander}
+En \emph{stasjonær tilstand} er en egentilstand til $\hat{H}$;
+tidsavhengigheten er en ren fase, så enhver forventningsverdi
+er konstant i tid. Run-in-overskrifter som denne markerer det
+laveste strukturnivået og holdes utenfor innholdsfortegnelsen.
+
 
 % =================================================
 \section{Eksempler}
@@ -180,9 +177,10 @@ $\hat{H}$ integrerer ligning~\eqref{eq:schrodinger} til
 \end{figure}
 
 Figur~\ref{fig:nivaer} viser en typisk struktur som dukker
-opp gjennom resten av notatene.
+opp gjennom resten av notatene. Noen fundamentale konstanter
+er samlet i tabell~\ref{tab:konstanter} for referanse.
 
-\begin{table}[t]
+\begin{table}[ht]
   \centering
   \caption{Fundamentale fysiske konstanter.}
   \label{tab:konstanter}
@@ -196,6 +194,42 @@ opp gjennom resten av notatene.
     \bottomrule
   \end{tabular}
 \end{table}
+
+
+% =================================================
+\section{Oppgaver}
+
+Notater kan bære oppgaver ved siden av framstillingen.
+\verb|oppgave|-omgivelsen nummereres per seksjon og skilles
+visuelt fra teksten rundt med \verb|\separator|. Deloppgaver
+bruker \verb|deloppgaver|-omgivelsen, som merker delene a), b), c)
+uten å påvirke vanlige \verb|enumerate|-lister.
+
+\separator
+
+\begin{oppgave}
+  Vis at egenverdiene til en selvadjungert operator $\hat{A}$
+  er reelle, og at egenvektorer som hører til forskjellige
+  egenverdier er ortogonale.
+\end{oppgave}
+
+\begin{oppgave}
+  Betrakt en partikkel i en endimensjonal uendelig dyp
+  brønn med bredde $L$.
+  \begin{deloppgaver}
+    \item Skriv opp de normerte energiegenfunksjonene.
+    \item Regn ut energinivåene $E_n$.
+  \end{deloppgaver}
+
+  De resterende delene bygger på spekteret funnet ovenfor; bruk
+  resultatet fra deloppgave~(b) når du skisserer tetthetene.
+
+  \begin{deloppgaver}[resume]
+    \item Skisser sannsynlighetstettheten for $n = 1, 2, 3$.
+    \item Regn ut forventningsverdien $\langle x \rangle$ i
+          grunntilstanden.
+  \end{deloppgaver}
+\end{oppgave}
 
 
 % =================================================

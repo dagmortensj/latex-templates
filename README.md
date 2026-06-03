@@ -13,10 +13,9 @@ version in `no/`:
 | Template            | Description                                                                  |
 |---------------------|------------------------------------------------------------------------------|
 | **book**            | CUP-style monograph: parts, chapters, drop caps, superscript citations       |
-| **classic-article** | Classic article with flexible font choice and rich utility packages          |
 | **ffv**             | Two-column physics/math article (JHEP-inspired) with STIX2 typography        |
-| **handout**         | Problem sheets with built-in exercise environment and separator rules        |
-| **notes**           | Long-form theoretical notes with theorem environments and JHEP-style TOC     |
+| **handout**         | Problem sheets: theorem & exercise environments, separator rules             |
+| **notes**           | CUP-style typography for notes; theorem & exercise environments, framed TOC  |
 
 ## Quick start
 
@@ -28,7 +27,7 @@ version in `no/`:
 Each template ships with:
 
 - `main.tex` — the document body, with example content demonstrating the template's features
-- A style file (`bookstyle.sty`, `notesstyle.sty`, `klassiskstil.sty`, ...) — all formatting lives here
+- A style file (`bookstyle.sty`, `notesstyle.sty`, `handoutstyle.sty`, ...) — all formatting lives here
 - A `.bib` file with example bibliography entries
 - A `figures/` (or `figurer/`) folder with a stock figure
 - A `README.md` documenting the template's features and conventions

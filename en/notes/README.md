@@ -1,7 +1,8 @@
 # notes-template
 
 LaTeX template for long-form theoretical physics and mathematics notes.
-JHEP/CUP-inspired layout, calm vertical rhythm, numerical citations.
+CUP-inspired book typography in article form, with theorem and exercise
+environments, a JHEP-style framed table of contents, and numbered citations.
 
 ## Files
 
@@ -35,6 +36,17 @@ pdflatex main
 \cite{k1,k2,k3}            % [1-3] (sorted and compressed)
 ```
 
+### Table of contents
+
+```latex
+\framedtoc
+```
+
+Renders the contents framed by a rule above and below (JHEP-style),
+with no dot leaders. In the template it sits on its own page,
+between the front page and the body. Plain `\tableofcontents` still
+works if you ever want an unframed list.
+
 ### Theorem environments
 
 ```latex
@@ -53,6 +65,38 @@ pdflatex main
 
 All three share a single counter scoped to the section,
 e.g. Theorem 2.1, Definition 2.2, Remark 2.3.
+
+### Exercises
+
+```latex
+\begin{exercise}
+Prompt for the exercise.
+
+\begin{subproblems}
+  \item First subproblem.
+  \item Second subproblem.
+\end{subproblems}
+\end{exercise}
+```
+
+Exercises are numbered per section (e.g. Exercise 4.1, 4.2),
+independently of the theorem counter, and use lowercase
+letter labels for subproblems (a, b, c). The `subproblems`
+environment leaves ordinary `enumerate` lists untouched.
+
+Use `\begin{subproblems}[resume]` to continue the same letter
+sequence after explanatory prose between subproblems.
+
+### Separator
+
+```latex
+\separator
+```
+
+A thin dark red rule with vertical space on either side.
+Use between content blocks — after an exercise, between
+examples, or at a topic shift within a section. It can be
+called anywhere in the normal document flow.
 
 ### Equations
 
@@ -87,7 +131,8 @@ vertical lines.
 - **Line spacing:** 1.07
 - **Paragraphs:** indented, no line break
 - **Microtypography:** protrusion, expansion, tracking enabled
-- **Sections:** numbered, small-caps headings
+- **Sections:** numbered, bold headings
+- **Subsubsections:** quiet run-in heading, kept out of the table of contents
 - **Citations:** numerical in square brackets, sorted and compressed
 - **Bibliography:** `unsrtnat` (in citation order)
 - **Hyperlinks:** dark red, print-safe
@@ -107,6 +152,20 @@ vertical lines.
 The `[theorem]` argument means the new environment shares
 the theorem counter — keeps numbering coherent across the
 document.
+
+## Localizing labels
+
+`notesstyle.sty` sets the structured-environment labels in
+English by default. Override any of them *before* loading the
+style (e.g. for Norwegian notes):
+
+```latex
+\providecommand{\theoremname}{Teorem}
+\providecommand{\definitionname}{Definisjon}
+\providecommand{\remarkname}{Merknad}
+\providecommand{\exercisename}{Oppgave}
+\usepackage{notesstyle}
+```
 
 ## BibTeX sources
 

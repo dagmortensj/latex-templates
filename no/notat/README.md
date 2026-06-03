@@ -1,7 +1,9 @@
 # notat-mal
 
 LaTeX-mal for langformede notater i teoretisk fysikk og matematikk.
-JHEP/CUP-inspirert oppsett, rolig vertikal rytme, numeriske siteringer.
+CUP-inspirert boktypografi i artikkelformat, med teorem- og
+oppgaveomgivelser, en JHEP-aktig innrammet innholdsfortegnelse, og
+nummererte siteringer.
 
 ## Filer
 
@@ -35,6 +37,17 @@ pdflatex main
 \cite{n1,n2,n3}            % [1-3] (sortert og komprimert)
 ```
 
+### Innholdsfortegnelse
+
+```latex
+\framedtoc
+```
+
+Setter innholdsfortegnelsen med en linje over og under
+(JHEP-stil), uten punktledere. I malen ligger den på egen side,
+mellom forsiden og brødteksten. Vanlig `\tableofcontents`
+fungerer fortsatt om du heller vil ha en uinnrammet liste.
+
 ### Teoremomgivelser
 
 ```latex
@@ -53,6 +66,38 @@ pdflatex main
 
 Alle tre deler én teller knyttet til seksjonen,
 f.eks. Teorem 2.1, Definisjon 2.2, Merknad 2.3.
+
+### Oppgaver
+
+```latex
+\begin{oppgave}
+Oppgavetekst.
+
+\begin{deloppgaver}
+  \item Første deloppgave.
+  \item Andre deloppgave.
+\end{deloppgaver}
+\end{oppgave}
+```
+
+Oppgaver nummereres per seksjon (f.eks. Oppgave 4.1, 4.2),
+uavhengig av teoremtelleren, og bruker små bokstavetiketter
+for deloppgaver (a, b, c). `deloppgaver`-omgivelsen lar vanlige
+`enumerate`-lister være urørt.
+
+Bruk `\begin{deloppgaver}[resume]` for å fortsette samme
+bokstavsekvens etter forklarende tekst mellom deloppgaver.
+
+### Separator
+
+```latex
+\separator
+```
+
+En tynn mørkerød linje med vertikalt mellomrom på begge sider.
+Bruk mellom innholdsblokker — etter en oppgave, mellom
+eksempler, eller ved temaskifter innen en seksjon. Den kan
+kalles hvor som helst i den vanlige tekstflyten.
 
 ### Ligninger
 
@@ -87,7 +132,8 @@ vertikale streker.
 - **Linjeavstand:** 1.07
 - **Avsnitt:** innrykk, ikke linjeskift
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
-- **Seksjoner:** nummererte, kapitlede overskrifter
+- **Seksjoner:** nummererte, fete overskrifter
+- **Underunderseksjoner:** stille run-in-overskrift, holdt utenfor innholdsfortegnelsen
 - **Siteringer:** numeriske i hakeparenteser, sortert og komprimert
 - **Bibliografi:** `unsrtnat` (i siteringsrekkefølge)
 - **Hyperlenker:** mørkerød, trygt for trykk
