@@ -197,6 +197,43 @@ er samlet i tabell~\ref{tab:konstanter} for referanse.
 
 
 % =================================================
+\section{Numeriske metoder}
+
+\verb|python|-omgivelsen setter kode med Gruvbox Light
+syntaksutheving direkte i notatene. Den passer godt til korte
+skript som følger en analytisk utledning — for eksempel
+beregning av forventningsverdier for egentilstandene funnet i
+de foregående seksjonene.
+
+Skriptet nedenfor evaluerer sannsynlighetstettheten
+$|\psi_n(x)|^2$ for den uendelig dype brønnen numerisk, og
+integrerer deretter $\langle x \rangle = \int_0^L x\,|\psi_n|^2\,\mathrm{d}x$
+for de tre første nivåene og bekrefter resultatet $\langle x \rangle = L/2$.
+
+\begin{python}
+import numpy as np
+
+def psi(n, x, L=1.0):
+    """Normert bølgefunksjon for uendelig dyp brønn."""
+    return np.sqrt(2.0 / L) * np.sin(n * np.pi * x / L)
+
+def energi(n, L=1.0, hbar=1.0, m=1.0):
+    """Energiegenverdi E_n i naturlige enheter."""
+    return (n * np.pi * hbar)**2 / (2 * m * L**2)
+
+x = np.linspace(0, 1, 1000)
+for n in range(1, 4):
+    tetthet = psi(n, x)**2          # sannsynlighetstetthet |psi_n|^2
+    middelx = np.trapz(x * tetthet, x)
+    print(f"n={n}  E_n={energi(n):.4f}  <x>={middelx:.4f}")
+\end{python}
+
+Kjøring av dette gir $\langle x \rangle \approx 0{,}5000$ for
+alle~$n$, i samsvar med symmetrien til hver egentilstand om
+midtpunktet av brønnen.
+
+
+% =================================================
 \section{Oppgaver}
 
 Notater kan bære oppgaver ved siden av framstillingen.

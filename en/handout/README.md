@@ -69,6 +69,24 @@ sequence after explanatory prose between subproblems.
 All three share a single counter scoped to the section,
 e.g. Theorem 1.1, Definition 1.2, Remark 1.3.
 
+### Python code
+
+```latex
+\begin{python}
+import numpy as np
+
+def f(x):
+    return np.sin(x)   # example function
+
+print(f(np.pi / 2))
+\end{python}
+```
+
+Typesets Python with Gruvbox Light syntax highlighting: coloured
+keywords, strings, comments, and line numbers on a warm cream background,
+framed top and bottom. UTF-8 input is enabled, so Norwegian characters
+(æ, ø, å) work in surrounding text and in code comments.
+
 ### Separator
 
 ```latex

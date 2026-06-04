@@ -266,6 +266,65 @@
 
 
 % ============================================================
+% KODEEKSEMPLER
+% ============================================================
+%
+% Python-kodeblokker med Gruvbox Light syntaksutheving via
+% listings-pakken. Krever ingen shell-escape eller eksterne
+% verktøy; alt er selvforsynt.
+%
+% Gruvbox Light Hard-palett (gruvbox.dayle.io):
+%   bakgrunn    #fbf7e4   forgrunn    #3c3836
+%   nøkkelord   #9d0006   strenger    #79740e
+%   kommentarer #928374   tall        #b57614
+%   innebygde   #076678
+%
+% Bruk:
+%   \begin{python}
+%     def f(x):
+%         return x**2
+%   \end{python}
+%
+\RequirePackage{listings}
+
+\definecolor{gruvbg}    {HTML}{fdfcf2}
+\definecolor{gruvfg}    {HTML}{3c3836}
+\definecolor{gruvkw}    {HTML}{9d0006}
+\definecolor{gruvstr}   {HTML}{79740e}
+\definecolor{gruvcom}   {HTML}{928374}
+\definecolor{gruvnum}   {HTML}{b57614}
+\definecolor{gruvbi}    {HTML}{076678}
+
+\lstdefinestyle{gruvboxlight}{
+  backgroundcolor   = \color{gruvbg},
+  basicstyle        = \small\ttfamily\color{gruvfg},
+  keywordstyle      = \color{gruvkw}\bfseries,
+  stringstyle       = \color{gruvstr},
+  commentstyle      = \color{gruvcom}\itshape,
+  numberstyle       = \color{gruvnum},
+  identifierstyle   = \color{gruvfg},
+  breaklines        = true,
+  showstringspaces  = false,
+  numbers           = left,
+  numbersep         = 10pt,
+  frame             = tb,
+  xleftmargin       = 2em,
+  xrightmargin      = 2em,
+  framexleftmargin  = 5pt,
+  framexrightmargin = 5pt,
+  aboveskip         = 2.4ex,
+  belowskip         = 2.4ex,
+  extendedchars     = true,
+  inputencoding     = utf8
+}
+
+\lstnewenvironment{python}
+  {\lstset{language=Python, style=gruvboxlight,
+           morekeywords={True,False,None,self}}}
+  {}
+
+
+% ============================================================
 % HYPERLENKER
 % ============================================================
 %

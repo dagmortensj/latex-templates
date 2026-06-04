@@ -10,12 +10,14 @@ Norwegian.
 Each template has an English version in `en/` and a Norwegian
 version in `no/`:
 
-| Template            | Description                                                                  |
-|---------------------|------------------------------------------------------------------------------|
-| **book**            | CUP-style monograph: parts, chapters, drop caps, superscript citations       |
-| **ffv**             | Two-column physics/math article (JHEP-inspired) with STIX2 typography        |
-| **handout**         | Problem sheets: theorem & exercise environments, separator rules             |
-| **notes**           | CUP-style typography for notes; theorem & exercise environments, framed TOC  |
+| Template    | Description              | Features                                                                    |
+|-------------|--------------------------|-----------------------------------------------------------------------------|
+| **book**    | CUP-style monograph      | parts, chapters, drop caps, superscript citations                           |
+| **ffv**     | JHEP two-column article  | STIX2 typography, numbered citations                                        |
+| **handout** | Problem sheets           | theorem environments, exercises, python code                                |
+| **notes**   | CUP-style lecture notes  | theorem environments, exercises, python code; framed TOC, numbered citations|
+
+All templates include figure and table support.
 
 ## Quick start
 
@@ -57,3 +59,9 @@ appreciated but not required.
 These templates reflect my own conventions and aesthetic preferences
 for academic and teaching documents. They're shared in case they're
 useful to others — feel free to fork and adapt to your own needs.
+
+## Acknowledgements
+
+These templates were developed in collaboration with Claude (Anthropic).
+Comments in style files and README documentation were written by Claude
+and reviewed for accuracy, but may contain errors or imprecisions.

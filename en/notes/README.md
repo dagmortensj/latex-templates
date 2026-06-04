@@ -87,6 +87,24 @@ environment leaves ordinary `enumerate` lists untouched.
 Use `\begin{subproblems}[resume]` to continue the same letter
 sequence after explanatory prose between subproblems.
 
+### Python code
+
+```latex
+\begin{python}
+import numpy as np
+
+def f(x):
+    return np.sin(x)   # example function
+
+print(f(np.pi / 2))
+\end{python}
+```
+
+Typesets Python with Gruvbox Light syntax highlighting: coloured
+keywords, strings, comments, and line numbers on a warm cream background,
+framed top and bottom. UTF-8 input is enabled, so Norwegian characters
+(æ, ø, å) work in surrounding text and in code comments.
+
 ### Separator
 
 ```latex

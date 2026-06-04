@@ -69,6 +69,24 @@ bokstavsekvens etter forklarende tekst mellom deloppgaver.
 Alle tre deler én teller knyttet til seksjonen,
 f.eks. Teorem 1.1, Definisjon 1.2, Merknad 1.3.
 
+### Python-kode
+
+```latex
+\begin{python}
+import numpy as np
+
+def f(x):
+    return np.sin(x)   # eksempelfunksjon
+
+print(f(np.pi / 2))
+\end{python}
+```
+
+Setter Python-kode med Gruvbox Light syntaksutheving: fargede
+nøkkelord, strenger, kommentarer og linjenummer på en varm kremfarget
+bakgrunn, rammet opp og ned. UTF-8 er aktivert, så norske tegn
+(æ, ø, å) fungerer i den omgivende teksten og i kodekommentarer.
+
 ### Separator
 
 ```latex
