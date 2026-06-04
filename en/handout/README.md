@@ -132,8 +132,8 @@ examples, or at a topic shift within a section.
 ## Localizing labels
 
 `handoutstyle.sty` sets the structured-environment labels in
-English by default. Override any of them *before* loading the
-style (e.g. for a Norwegian handout):
+English by default. To adapt this English template to another
+language, override any of them *before* loading the style:
 
 ```latex
 \providecommand{\theoremname}{Teorem}
@@ -142,3 +142,8 @@ style (e.g. for a Norwegian handout):
 \providecommand{\exercisename}{Oppgave}
 \usepackage{handoutstyle}
 ```
+
+(If you just want Norwegian, use the bundled `no/handout`
+template instead — it ships fully localized, with the theorem
+and exercise environments defined under Norwegian names rather
+than via these override hooks.)

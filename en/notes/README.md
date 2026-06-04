@@ -174,8 +174,8 @@ document.
 ## Localizing labels
 
 `notesstyle.sty` sets the structured-environment labels in
-English by default. Override any of them *before* loading the
-style (e.g. for Norwegian notes):
+English by default. To adapt this English template to another
+language, override any of them *before* loading the style:
 
 ```latex
 \providecommand{\theoremname}{Teorem}
@@ -184,6 +184,11 @@ style (e.g. for Norwegian notes):
 \providecommand{\exercisename}{Oppgave}
 \usepackage{notesstyle}
 ```
+
+(If you just want Norwegian, use the bundled `no/notat`
+template instead — it ships fully localized, with the theorem
+and exercise environments defined under Norwegian names rather
+than via these override hooks.)
 
 ## BibTeX sources
 
