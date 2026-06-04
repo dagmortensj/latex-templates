@@ -192,13 +192,10 @@
 %
 % Oppgaver er implementert med amsthm (lastet ovenfor):
 %  - nummerert per seksjon (Oppgave 2.1, 2.2, ...)
+%  - valgfri tittel: \begin{oppgave}[Tittel] gir
+%    "Oppgave 1.1 - Tittel" med tittelen i fet
 %  - lett innrykket via en quote-omgivelse
-%  - visuelt mindre framtredende enn seksjonsoverskrifter
 %
-% \newtheoremstyle-argumenter, i rekkefølge:
-%   avstand over, avstand under, kroppsfont, innrykk,
-%   hodefont, hodetegnsetting,
-%   avstand mellom hode og kropp, egendefinert hodespesifikasjon.
 \newtheoremstyle{handoutex}
   {1ex}              % avstand over
   {1ex}              % avstand under
@@ -207,7 +204,7 @@
   {\bfseries}        % hodefont
   {}                 % hodetegnsetting
   {\newline}         % avstand mellom hode og kropp
-  {}                 % egendefinert hodespesifikasjon (tom = standard)
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ - \bfseries#3}}
 
 \theoremstyle{handoutex}
 \newtheorem{oppgaveinner}{Oppgave}[section]
@@ -222,13 +219,19 @@
 % etiketten ({\newline}-skillet over). \leavevmode\par\vspace{-2ex}
 % trekker så kroppen opp til et tett mellomrom under etiketten.
 % -2ex er font-relativ, så den følger linjehøyden på tvers av
-% størrelser. (En egendefinert hodespesifikasjon ble forsøkt,
-% men kolliderer med quote-innpakningen; dette er den stabile formen.)
-\newenvironment{oppgave}
+% størrelser.
+%
+% Støtter valgfri tittel: \begin{oppgave}[Tittel]
+% gir "Oppgave 1.1 - Tittel" med tittelen i fet.
+\newenvironment{oppgave}[1][]
 {%
   \par
   \begin{quote}
-  \begin{oppgaveinner}\leavevmode\par\vspace{-2ex}
+  \def\tmp{#1}\ifx\tmp\empty
+    \begin{oppgaveinner}\leavevmode\par\vspace{-2ex}
+  \else
+    \begin{oppgaveinner}[#1]\leavevmode\par\vspace{-2ex}
+  \fi
 }
 {%
   \end{oppgaveinner}
@@ -309,13 +312,16 @@
   numbersep         = 10pt,
   frame             = tb,
   xleftmargin       = 2em,
-  xrightmargin      = 2em,
-  framexleftmargin  = 5pt,
-  framexrightmargin = 5pt,
+  xrightmargin      = 0em,
+  framexleftmargin  = 2em,
+  framexrightmargin = 0em,
   aboveskip         = 2.4ex,
   belowskip         = 2.4ex,
   extendedchars     = true,
-  inputencoding     = utf8
+  inputencoding     = utf8,
+  literate          =
+    {æ}{{\ae}}1 {ø}{{\o}}1 {å}{{\aa}}1
+    {Æ}{{\AE}}1 {Ø}{{\O}}1 {Å}{{\AA}}1
 }
 
 \lstnewenvironment{python}

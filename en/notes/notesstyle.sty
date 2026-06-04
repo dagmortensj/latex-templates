@@ -317,8 +317,14 @@
 % problems alongside the main exposition.
 %
 % Provides:
-%   - the exercise environment (numbered per section)
-%   - the subproblems environment for a), b), c) parts
+%   - exercise environment, numbered per section (Exercise 2.1, ...)
+%   - optional title: \begin{exercise}[Title] renders as
+%     "Exercise 1.1 - Title" with the title in bold
+%   - subproblems environment for a), b), c) parts
+%
+% The exercise label defaults to "Exercise". Override before
+% loading this style to use a different name:
+%   \providecommand{\exercisename}{Problem}
 %
 % amsthm is loaded above (THEOREM-LIKE ENVIRONMENTS);
 % enumitem powers the subproblems list.
@@ -327,10 +333,8 @@
 
 % --- Exercise environment ---
 %
-% Numbered independently of theorems, per section
-% (Exercise 2.1, 2.2, ...). The label name can be
-% localized by defining \exercisename before this style
-% is loaded, e.g. \providecommand{\exercisename}{Oppgave}.
+% Numbered independently of theorems, per section (Exercise 2.1, ...).
+% Label name is overridable — see section comment above.
 \newtheoremstyle{notesex}
   {1ex}              % space above
   {1ex}              % space below
@@ -339,8 +343,9 @@
   {\bfseries}        % head font
   {}                 % head punctuation
   {\newline}         % space between head and body
-  {}                 % custom head spec (empty = default)
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ - \bfseries#3}}
 
+% Label name — override before \usepackage{notesstyle} to change.
 \providecommand{\exercisename}{Exercise}
 
 \theoremstyle{notesex}
@@ -356,14 +361,19 @@
 % label (the {\newline} head/body separator above). The
 % \leavevmode\par\vspace{-2ex} then pulls the body up to a
 % tight gap under the label. -2ex is font-relative, so it
-% tracks the line height across sizes. (A custom head spec
-% was tried instead, but it conflicts with the quote wrapper;
-% this is the stable form.)
-\newenvironment{exercise}
+% tracks the line height across sizes.
+%
+% Supports an optional title: \begin{exercise}[Title]
+% renders as "Exercise 1.1 - Title" with the title in bold.
+\newenvironment{exercise}[1][]
 {%
   \par
   \begin{quote}
-  \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+  \def\tmp{#1}\ifx\tmp\empty
+    \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+  \else
+    \begin{exerciseinner}[#1]\leavevmode\par\vspace{-2ex}
+  \fi
 }
 {%
   \end{exerciseinner}
@@ -431,13 +441,16 @@
   numbersep         = 10pt,
   frame             = tb,
   xleftmargin       = 2em,
-  xrightmargin      = 2em,
-  framexleftmargin  = 5pt,
-  framexrightmargin = 5pt,
+  xrightmargin      = 0em,
+  framexleftmargin  = 2em,
+  framexrightmargin = 0em,
   aboveskip         = 2.4ex,
   belowskip         = 2.4ex,
   extendedchars     = true,
-  inputencoding     = utf8
+  inputencoding     = utf8,
+  literate          =
+    {æ}{{\ae}}1 {ø}{{\o}}1 {å}{{\aa}}1
+    {Æ}{{\AE}}1 {Ø}{{\O}}1 {Å}{{\AA}}1
 }
 
 \lstnewenvironment{python}

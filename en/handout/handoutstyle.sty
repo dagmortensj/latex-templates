@@ -199,13 +199,14 @@
 %
 % Exercises are implemented using amsthm (loaded above):
 %  - numbered per section (Exercise 2.1, 2.2, ...)
+%  - optional title: \begin{exercise}[Title] renders as
+%    "Exercise 1.1 - Title" with the title in bold
 %  - slightly indented using a quote environment
-%  - visually less prominent than section headings
 %
-% \newtheoremstyle arguments, in order:
-%   space above, space below, body font, indent,
-%   head font, head punctuation,
-%   space between head and body, custom head spec.
+% The exercise label defaults to "Exercise". Override before
+% loading this style to use a different name:
+%   \providecommand{\exercisename}{Problem}
+%
 \newtheoremstyle{handoutex}
   {1ex}              % space above
   {1ex}              % space below
@@ -214,10 +215,9 @@
   {\bfseries}        % head font
   {}                 % head punctuation
   {\newline}         % space between head and body
-  {}                 % custom head spec (empty = default)
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ - \bfseries#3}}
 
-% Exercise label name. Override before loading to localize:
-%   \providecommand{\exercisename}{Oppgave} % Norwegian
+% Label name — override before \usepackage{handoutstyle} to change.
 \providecommand{\exercisename}{Exercise}
 
 \theoremstyle{handoutex}
@@ -233,14 +233,19 @@
 % label (the {\newline} head/body separator above). The
 % \leavevmode\par\vspace{-2ex} then pulls the body up to a
 % tight gap under the label. -2ex is font-relative, so it
-% tracks the line height across sizes. (A custom head spec
-% was tried instead, but it conflicts with the quote wrapper;
-% this is the stable form.)
-\newenvironment{exercise}
+% tracks the line height across sizes.
+%
+% Supports an optional title: \begin{exercise}[Title]
+% renders as "Exercise 1.1 - Title" with the title in bold.
+\newenvironment{exercise}[1][]
 {%
   \par
   \begin{quote}
-  \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+  \def\tmp{#1}\ifx\tmp\empty
+    \begin{exerciseinner}\leavevmode\par\vspace{-2ex}
+  \else
+    \begin{exerciseinner}[#1]\leavevmode\par\vspace{-2ex}
+  \fi
 }
 {%
   \end{exerciseinner}
@@ -321,13 +326,16 @@
   numbersep         = 10pt,
   frame             = tb,
   xleftmargin       = 2em,
-  xrightmargin      = 2em,
-  framexleftmargin  = 5pt,
-  framexrightmargin = 5pt,
+  xrightmargin      = 0em,
+  framexleftmargin  = 2em,
+  framexrightmargin = 0em,
   aboveskip         = 2.4ex,
   belowskip         = 2.4ex,
   extendedchars     = true,
-  inputencoding     = utf8
+  inputencoding     = utf8,
+  literate          =
+    {æ}{{\ae}}1 {ø}{{\o}}1 {å}{{\aa}}1
+    {Æ}{{\AE}}1 {Ø}{{\O}}1 {Å}{{\AA}}1
 }
 
 \lstnewenvironment{python}
