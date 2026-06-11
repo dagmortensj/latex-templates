@@ -125,6 +125,6 @@ mellom eksempler, eller ved temaskifter innen en seksjon.
 - **Linjeavstand:** 1.04
 - **Avsnitt:** innrykk, ikke linjeskift
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
-- **Seksjoner:** stille, normal størrelse i fet (ingen overdimensjonerte fonter eller streker)
+- **Overskrifter:** to stille nivåer — seksjon (`\large`) og underseksjon (kroppsstørrelse), fet; ingen overdimensjonerte fonter eller streker. Underseksjonen gjør at handout-en også kan brukes som forelesningsnotater.
 - **Tittelblokk:** kapiteler, sperret, sentrert
 - **Hyperlenker og linjer:** mørkerøde, trygt for trykk

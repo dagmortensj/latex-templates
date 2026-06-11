@@ -75,20 +75,37 @@
 % SECTION HEADINGS
 % ============================================================
 %
-% Sections are intentionally quiet:
+% Headings are intentionally quiet:
 %  - no oversized fonts
 %  - no decorative rules
 %
+% Two levels, so the handout can also serve as lecture
+% notes. Both stay at or above body size; the hierarchy
+% is carried by one size step, not by large display type:
+%   section     \large      (one step above body)
+%   subsection  \normalsize  (equal to body)
+%
 \RequirePackage{titlesec}
 
+% Sections
 \titleformat{\section}
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\large\bfseries}
   {\thesection}{0.6em}{}
 
 \titlespacing*{\section}
   {0pt}
   {6ex plus 2ex minus .8ex}
   {2ex plus .5ex}
+
+% Subsections: smaller than sections but not below body size
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}{0.6em}{}
+
+\titlespacing*{\subsection}
+  {0pt}
+  {3.5ex plus 1ex minus .5ex}
+  {1.2ex plus .3ex}
 
 
 % ============================================================

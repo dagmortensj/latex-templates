@@ -75,20 +75,38 @@
 % SEKSJONSOVERSKRIFTER
 % ============================================================
 %
-% Seksjoner er bevisst stille:
+% Overskrifter er bevisst stille:
 %  - ingen overdimensjonerte fonter
 %  - ingen dekorative streker
 %
+% To nivåer, slik at handout-en også kan brukes som
+% forelesningsnotater. Begge holder seg på eller over
+% kroppsstørrelse; hierarkiet bæres av ett størrelsessteg,
+% ikke av store displayfonter:
+%   seksjon     \large       (ett steg over kroppstekst)
+%   underseksjon \normalsize  (lik kroppstekst)
+%
 \RequirePackage{titlesec}
 
+% Seksjoner
 \titleformat{\section}
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\large\bfseries}
   {\thesection}{0.6em}{}
 
 \titlespacing*{\section}
   {0pt}
   {6ex plus 2ex minus .8ex}
   {2ex plus .5ex}
+
+% Underseksjoner: mindre enn seksjoner, men ikke under kroppsstørrelse
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}{0.6em}{}
+
+\titlespacing*{\subsection}
+  {0pt}
+  {3.5ex plus 1ex minus .5ex}
+  {1.2ex plus .3ex}
 
 
 % ============================================================
