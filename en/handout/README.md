@@ -125,7 +125,7 @@ examples, or at a topic shift within a section.
 - **Line spacing:** 1.04
 - **Paragraphs:** indented, no line break
 - **Microtypography:** protrusion, expansion, tracking enabled
-- **Sections:** quiet, normal-size bold (no oversized fonts or rules)
+- **Headings:** two quiet levels — section (`\large`) and subsection (body size), bold; no oversized fonts or rules. The subsection lets the handout double as lecture notes.
 - **Title block:** small caps, letterspaced, centered
 - **Hyperlinks and rules:** dark red, print-safe
 

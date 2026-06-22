@@ -171,14 +171,21 @@
 \renewcommand{\maketitle}{%
   \thispagestyle{plain}
   \vspace*{0.22\textheight}
-  \begin{center}
-    {\huge\scshape \@title \par}
-    \vspace{2.8em}
-    {\large \@author \par}
-    \vspace{0.7em}
-    {\normalsize \@date \par}
-  \end{center}
-  \vspace{4.5em}
+  \begingroup
+    % Tittelside-fotnoter (\thanks) bruker symboler: *, \dag, \ddag, ...
+    \renewcommand\thefootnote{\@fnsymbol\c@footnote}%
+    \begin{center}
+      {\huge\scshape \@title \par}
+      \vspace{2.8em}
+      {\large \@author \par}
+      \vspace{0.7em}
+      {\normalsize \@date \par}
+    \end{center}
+    \@thanks
+  \endgroup
+  \vspace{4.5em}%
+  \setcounter{footnote}{0}%
+  \global\let\@thanks\@empty
 }
 \makeatother
 
@@ -269,6 +276,27 @@
 % siden babel ikke nødvendigvis oversetter \proofname.)
 % ============================================================
 \RequirePackage{amsthm}
+
+% --- Luft rundt teorem-omgivelsene ---
+% amsthm setter avstanden over/under disse omgivelsene gjennom
+% hooken \thm@space@setup (standard: \topsep, en ganske stram
+% gummilengde). Vi hever den til en romsligere, utjevnet verdi slik
+% at teoremer, definisjoner og merknader leses som tydelige blokker
+% i stedet for å trenge seg mot teksten rundt. Bare den vertikale
+% avstanden røres — fonter, hode og innrykk forblir nøyaktig som
+% amsthm definerer dem.
+%
+% amsthms 'remark'-stil halverer i tillegg den arvede avstanden;
+% \th@remark settes på nytt for å droppe kun den halveringen (den
+% kursiverte hodefonten og den oppreiste brødfonten beholdes), slik
+% at merknader får samme avstand som teoremer og definisjoner.
+\makeatletter
+\def\thm@space@setup{%
+  \setlength\thm@preskip{2.8ex plus 1ex minus .4ex}%
+  \setlength\thm@postskip{\thm@preskip}%
+}
+\def\th@remark{\thm@headfont{\itshape}\normalfont}
+\makeatother
 
 \theoremstyle{plain}
 \newtheorem{teorem}{Teorem}[section]
