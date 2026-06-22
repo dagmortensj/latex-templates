@@ -86,11 +86,13 @@
 % ============================================================
 % DISPLAYED EQUATION SPACING
 %
-% Gentle, CUP/JHEP-style spacing: a little air around displayed
-% mathematics, with the "short" skips (used when the line before
-% the display is short) a touch smaller than the normal skips,
-% never zero. These values match the book style so the two read
-% as a family.
+% Gentle, CUP/JHEP-style spacing, shared with the book style so the
+% two read as a family. Only the ABOVE skip shrinks after a short
+% lead-in line (a short line already leaves trailing space), and
+% never to zero; the BELOW skip is always the full value, so the
+% gap under an equation never depends on what came above it:
+%     above 12pt   above (after short line)  7pt
+%     below 12pt   below (always)           12pt
 %
 % These MUST be applied via \AtBeginDocument. LaTeX's \normalsize
 % — invoked by \begin{document} — resets all four display skips to
@@ -104,7 +106,7 @@
   \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
   \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
   \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
-  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{12pt plus 3pt minus 3pt}%
 }
 
 

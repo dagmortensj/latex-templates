@@ -76,9 +76,13 @@
 % ============================================================
 %
 % Litt luft rundt framhevede ligninger, ett hakk strammere enn
-% book-/notes-stilene for å passe kortere dokumenter. "Kort"-
-% skipene (brukt når linja før ligningen er kort) er litt mindre
-% enn normal-skipene, aldri null — mild, CUP/JHEP-aktig.
+% book-/notes-stilene for å passe kortere dokumenter. Bare OVER-
+% skipet krymper etter en kort innledende linje (en kort linje gir
+% allerede luft der), og aldri til null; UNDER-skipet er alltid
+% full verdi, så luften under en ligning aldri avhenger av hva som
+% stod over:
+%     over 10pt    over (etter kort linje)   6pt
+%     under 10pt   under (alltid)           10pt
 %
 % Settes via \AtBeginDocument: LaTeX sin \normalsize (kjørt av
 % \begin{document}) nullstiller alle fire display-skip til
@@ -90,7 +94,7 @@
   \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
   \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
   \setlength{\abovedisplayshortskip}{6pt plus 2pt minus 2pt}%
-  \setlength{\belowdisplayshortskip}{6pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}%
 }
 
 

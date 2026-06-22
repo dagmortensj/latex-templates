@@ -75,11 +75,14 @@
 % DISPLAYED EQUATION SPACING
 % ============================================================
 %
-% A little air around displayed mathematics, a notch tighter
-% than the book/notes styles to suit shorter documents. The
-% "short" skips (used when the line before the display is short)
-% are slightly smaller than the normal skips, never zero —
-% gentle, CUP/JHEP-style.
+% A little air around displayed mathematics, a notch tighter than
+% the book/notes styles to suit shorter documents. Only the ABOVE
+% skip shrinks after a short lead-in line (a short line already
+% leaves trailing space), and never to zero; the BELOW skip is
+% always the full value, so the gap under an equation never depends
+% on what came above it:
+%     above 10pt   above (after short line)  6pt
+%     below 10pt   below (always)           10pt
 %
 % Applied via \AtBeginDocument: LaTeX's \normalsize (run by
 % \begin{document}) resets all four display skips to the class
@@ -91,7 +94,7 @@
   \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
   \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
   \setlength{\abovedisplayshortskip}{6pt plus 2pt minus 2pt}%
-  \setlength{\belowdisplayshortskip}{6pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}%
 }
 
 

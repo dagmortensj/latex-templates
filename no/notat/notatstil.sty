@@ -86,10 +86,13 @@
 % ============================================================
 % AVSTAND VED FRAMHEVEDE LIGNINGER
 %
-% Mild, CUP/JHEP-aktig avstand: litt luft rundt framhevede
-% ligninger, der "kort"-skipene (brukt når linja før ligningen er
-% kort) er litt mindre enn normal-skipene, aldri null. Disse
-% verdiene matcher bokstilen, så de to leses som en familie.
+% Mild, CUP/JHEP-aktig avstand, delt med bokstilen så de to leses
+% som en familie. Bare OVER-skipet krymper etter en kort innledende
+% linje (en kort linje gir allerede luft der), og aldri til null;
+% UNDER-skipet er alltid full verdi, så luften under en ligning
+% aldri avhenger av hva som stod over:
+%     over 12pt    over (etter kort linje)   7pt
+%     under 12pt   under (alltid)           12pt
 %
 % Disse MÅ settes via \AtBeginDocument. LaTeX sin \normalsize —
 % som kjøres av \begin{document} — nullstiller alle fire
@@ -104,7 +107,7 @@
   \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
   \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
   \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
-  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{12pt plus 3pt minus 3pt}%
 }
 
 
