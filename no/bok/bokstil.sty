@@ -78,13 +78,25 @@
 % =================================================
 % AVSTAND RUNDT VISTE LIGNINGER
 %
-% Eksplisitt kontroll sikrer konsekvent visuell rytme
-% rundt matematikk.
+% Eksplisitt kontroll sikrer konsekvent visuell rytme rundt
+% matematikk. "Kort"-skipene (brukt når linja før ligningen er
+% kort) er litt mindre enn normal-skipene, aldri null — mild,
+% CUP-aktig. Notatstilen deler disse verdiene, så de to leses
+% som en familie.
+%
+% Settes via \AtBeginDocument: LaTeX sin \normalsize (kjørt av
+% \begin{document}) nullstiller alle fire display-skip til
+% klassens standard, så verdier satt her i preamblet ville blitt
+% stille overstyrt. Ved å sette dem etter \normalsize trer de i
+% kraft; senere størrelsesendringer er grupperte og gjenoppretter
+% dem når de avsluttes.
 % =================================================
-\setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}
-\setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}
-\setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}
-\setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+}
 
 
 % =================================================

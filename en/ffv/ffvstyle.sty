@@ -98,12 +98,18 @@
 % belowdisplayshortskip:
 %   After an equation there should always be the
 %   same amount of air, regardless of what came above.
+%
+% Applied via \AtBeginDocument: LaTeX's \normalsize (run by
+% \begin{document}) resets all four display skips to the class
+% defaults, so values set here in the preamble would be silently
+% overridden. Setting them after \normalsize makes them take effect.
 % =================================================
-\setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}
-\setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}
-
-\setlength{\abovedisplayshortskip}{4pt plus 2pt minus 1pt}
-\setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{4pt plus 2pt minus 1pt}%
+  \setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}%
+}
 
 
 % =================================================

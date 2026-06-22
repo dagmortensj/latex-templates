@@ -72,6 +72,29 @@
 
 
 % ============================================================
+% AVSTAND VED FRAMHEVEDE LIGNINGER
+% ============================================================
+%
+% Litt luft rundt framhevede ligninger, ett hakk strammere enn
+% book-/notes-stilene for å passe kortere dokumenter. "Kort"-
+% skipene (brukt når linja før ligningen er kort) er litt mindre
+% enn normal-skipene, aldri null — mild, CUP/JHEP-aktig.
+%
+% Settes via \AtBeginDocument: LaTeX sin \normalsize (kjørt av
+% \begin{document}) nullstiller alle fire display-skip til
+% klassens standard (der \abovedisplayshortskip er 0pt), så
+% verdier satt i preamblet ville blitt stille overstyrt. Ved å
+% sette dem etter \normalsize trer de i kraft.
+%
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{6pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayshortskip}{6pt plus 2pt minus 2pt}%
+}
+
+
+% ============================================================
 % SEKSJONSOVERSKRIFTER
 % ============================================================
 %

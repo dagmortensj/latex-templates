@@ -97,12 +97,18 @@
 % belowdisplayshortskip:
 %   Etter en ligning bør det alltid være lik luft
 %   uansett hva som stod over.
+%
+% Settes via \AtBeginDocument: LaTeX sin \normalsize (kjørt av
+% \begin{document}) nullstiller alle fire display-skip til
+% klassens standard, så verdier satt her i preamblet ville blitt
+% stille overstyrt. Ved å sette dem etter \normalsize trer de i kraft.
 % =================================================
-\setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}
-\setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}
-
-\setlength{\abovedisplayshortskip}{4pt plus 2pt minus 1pt}
-\setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{4pt plus 2pt minus 1pt}%
+  \setlength{\belowdisplayshortskip}{10pt plus 3pt minus 2pt}%
+}
 
 
 % =================================================

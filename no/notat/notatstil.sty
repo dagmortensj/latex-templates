@@ -86,18 +86,26 @@
 % ============================================================
 % AVSTAND VED FRAMHEVEDE LIGNINGER
 %
-% Notater har godt av romslig plass rundt framhevede
-% ligninger, særlig etter korte innledende linjer
-% ("slik at", "altså", osv.).
+% Mild, CUP/JHEP-aktig avstand: litt luft rundt framhevede
+% ligninger, der "kort"-skipene (brukt når linja før ligningen er
+% kort) er litt mindre enn normal-skipene, aldri null. Disse
+% verdiene matcher bokstilen, så de to leses som en familie.
 %
-% Kort-skip og normal-skip er bevisst likestilt for å
-% unngå at det blir trangt.
+% Disse MÅ settes via \AtBeginDocument. LaTeX sin \normalsize —
+% som kjøres av \begin{document} — nullstiller alle fire
+% display-skip til klassens standardverdier (der
+% \abovedisplayshortskip er 0pt, det klemte uttrykket vi unngår),
+% så verdier satt her i preamblet ville blitt stille overstyrt.
+% Ved å sette dem etter at \normalsize har kjørt, trer de i kraft;
+% senere størrelsesendringer er grupperte og gjenoppretter disse
+% verdiene når de avsluttes.
 % ============================================================
-\setlength{\abovedisplayskip}{14.2pt plus 4.25pt minus 4.25pt}
-\setlength{\belowdisplayskip}{14.2pt plus 4.25pt minus 4.25pt}
-
-\setlength{\abovedisplayshortskip}{14.2pt plus 4.25pt minus 4.25pt}
-\setlength{\belowdisplayshortskip}{14.2pt plus 4.25pt minus 4.25pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+}
 
 
 % ============================================================

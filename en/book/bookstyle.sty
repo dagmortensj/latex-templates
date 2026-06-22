@@ -78,13 +78,24 @@
 % =================================================
 % DISPLAYED EQUATION SPACING
 %
-% Explicit control ensures consistent visual rhythm
-% around mathematics.
+% Explicit control ensures consistent visual rhythm around
+% mathematics. The "short" skips (used when the line before the
+% display is short) are a touch smaller than the normal skips,
+% never zero — gentle, CUP-style. The notes style shares these
+% values so the two read as a family.
+%
+% Applied via \AtBeginDocument: LaTeX's \normalsize (run by
+% \begin{document}) resets all four display skips to the class
+% defaults, so values set here in the preamble would be silently
+% overridden. Setting them after \normalsize makes them take
+% effect; later size changes are grouped and restore them on exit.
 % =================================================
-\setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}
-\setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}
-\setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}
-\setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+}
 
 
 % =================================================

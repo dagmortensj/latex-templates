@@ -86,18 +86,26 @@
 % ============================================================
 % DISPLAYED EQUATION SPACING
 %
-% Notes benefit from generous space around
-% displayed mathematics, especially after
-% short lead-in lines ("so that", "thus", etc.).
+% Gentle, CUP/JHEP-style spacing: a little air around displayed
+% mathematics, with the "short" skips (used when the line before
+% the display is short) a touch smaller than the normal skips,
+% never zero. These values match the book style so the two read
+% as a family.
 %
-% Short-skip and normal skip are intentionally
-% equalized to avoid cramping.
+% These MUST be applied via \AtBeginDocument. LaTeX's \normalsize
+% — invoked by \begin{document} — resets all four display skips to
+% the class defaults (whose \abovedisplayshortskip is 0pt, the
+% cramped look we are avoiding), so values set here in the preamble
+% would be silently overridden. Applying them after \normalsize has
+% run makes them take effect; later size changes are grouped and
+% restore these values on exit.
 % ============================================================
-\setlength{\abovedisplayskip}{14.2pt plus 4.25pt minus 4.25pt}
-\setlength{\belowdisplayskip}{14.2pt plus 4.25pt minus 4.25pt}
-
-\setlength{\abovedisplayshortskip}{14.2pt plus 4.25pt minus 4.25pt}
-\setlength{\belowdisplayshortskip}{14.2pt plus 4.25pt minus 4.25pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
+  \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
+  \setlength{\belowdisplayshortskip}{7pt plus 3pt minus 3pt}%
+}
 
 
 % ============================================================

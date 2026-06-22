@@ -72,6 +72,30 @@
 
 
 % ============================================================
+% DISPLAYED EQUATION SPACING
+% ============================================================
+%
+% A little air around displayed mathematics, a notch tighter
+% than the book/notes styles to suit shorter documents. The
+% "short" skips (used when the line before the display is short)
+% are slightly smaller than the normal skips, never zero —
+% gentle, CUP/JHEP-style.
+%
+% Applied via \AtBeginDocument: LaTeX's \normalsize (run by
+% \begin{document}) resets all four display skips to the class
+% defaults (whose \abovedisplayshortskip is 0pt), so values set
+% in the preamble would be silently overridden. Setting them
+% after \normalsize makes them take effect.
+%
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\belowdisplayskip}{10pt plus 3pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{6pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayshortskip}{6pt plus 2pt minus 2pt}%
+}
+
+
+% ============================================================
 % SECTION HEADINGS
 % ============================================================
 %
