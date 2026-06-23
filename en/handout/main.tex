@@ -41,7 +41,7 @@
 
 % --- Optional ---
 % \usepackage{physics}              % \dd, \ket, \bra, ...
-% \usepackage{tikz}                 % diagrams
+\usepackage{tikz}                   % native TikZ figures
 
 
 % =================================================
@@ -102,10 +102,44 @@ such potential, and $E$ is not conserved.
 
 A plot of $V(x)$ against $x$ summarizes the qualitative motion at a
 glance: the particle is confined to regions where $E \ge V(x)$, and
-turning points occur where $E = V(x)$. The subsection heading above
-sits one size step below the section title, while remaining at body
-size --- enough to mark a finer level when the handout is used for
-lecture notes.
+turning points occur where $E = V(x)$, as illustrated in
+Figure~\ref{fig:potential}.
+
+% TikZ figure example: use darkorange for energy levels / structural
+% elements, darkolive for curves, black for axes,
+% gray for secondary labels.  darkred is reserved for
+% the separator rule -- do not use it in figures.
+\begin{figure}[ht]
+  \centering
+  \begin{minipage}{0.5\linewidth}
+    \centering
+    \begin{tikzpicture}[>=stealth]
+      % Axes
+      \draw[->,thick] (-2.2,0) -- (2.2,0) node[right,font=\small] {$x$};
+      \draw[->,thick] (0,-0.2) -- (0,3.5) node[above,font=\small] {$V$};
+      % Parabola V(x) ~ x^2 (darkolive)
+      \draw[darkolive,thick,domain=-1.85:1.85,samples=60]
+        plot (\x, {\x*\x});
+      \node[darkolive,right,font=\small] at (1.7,3.1) {$V(x)$};
+      % Energy level (darkorange)
+      \draw[darkorange,thick] (-1.6,2.56) -- (1.6,2.56);
+      \node[right,font=\small,darkorange] at (1.65,2.56) {$E$};
+      % Classical turning points (gray dashed)
+      \draw[gray,thin,dashed] (-1.6,0) -- (-1.6,2.56);
+      \draw[gray,thin,dashed] ( 1.6,0) -- ( 1.6,2.56);
+      \node[below,font=\small,gray] at (-1.6,0) {$-x_0$};
+      \node[below,font=\small,gray] at ( 1.6,0) {$x_0$};
+    \end{tikzpicture}
+    \caption{Harmonic potential (\textcolor{darkolive}{olive}) with energy
+             level $E$ (\textcolor{darkorange}{orange}) and classical
+             turning points $\pm x_0$ (gray).}
+    \label{fig:potential}
+  \end{minipage}
+\end{figure}
+
+The subsection heading above sits one size step below the section
+title, while remaining at body size --- enough to mark a finer level
+when the handout is used for lecture notes.
 
 
 % =================================================

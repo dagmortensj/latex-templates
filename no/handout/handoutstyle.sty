@@ -99,6 +99,18 @@
 
 
 % ============================================================
+% FIGURTEKSTER
+%
+% font=small      -- ett steg under kroppstekst (JHEP/CUP-standard)
+% labelfont=bf    -- fet «Figur 1.»-etikett (JHEP/CUP-standard)
+% labelsep=period -- punktum etter nummeret, ikke kolon (JHEP-stil)
+% justification: default (singlelinecheck=true) -- enkeltlinjer
+%   sentreres automatisk; flerlinjers tekst justeres
+% ============================================================
+\RequirePackage[font=small,labelfont=bf,labelsep=period]{caption}
+
+
+% ============================================================
 % SEKSJONSOVERSKRIFTER
 % ============================================================
 %
@@ -170,10 +182,15 @@
 % FARGER
 % ============================================================
 %
-% Mørkerød valgt for å være trygg for trykk og diskret.
+% Trefargerspalett for figurer: darkred / darkorange / darkolive.
+%   darkred    -- fotnotelinje, strukturaksenter
+%   darkorange -- figuraksent: streker, noder, fyllte områder (TikZ)
+%   darkolive  -- figuraksent: andrefarge for kurver og fyll
 %
 \RequirePackage{xcolor}
-\definecolor{darkred}{RGB}{120,20,20}
+\definecolor{darkred}   {RGB}{120, 20,  20}
+\definecolor{darkorange}{RGB}{184, 92,   0}
+\definecolor{darkolive} {RGB}{ 74,107,  18}
 
 
 % ============================================================

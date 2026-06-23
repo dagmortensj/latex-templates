@@ -137,6 +137,31 @@ called anywhere in the normal document flow.
 \end{figure}
 ```
 
+### TikZ figures
+
+`notesstyle.sty` does not load TikZ — add `\usepackage{tikz}` to the
+custom packages block in `main.tex` when you need native figures.
+
+The style file defines three named colors. Their roles are fixed:
+
+| Color        | RGB          | Role                                                      |
+|--------------|--------------|-----------------------------------------------------------|
+| `darkorange` | 184, 92, 0   | Primary figure accent: strokes, nodes, bars               |
+| `darkolive`  | 74, 107, 18  | Secondary figure accent: curves, fills                    |
+| `darkred`    | 120, 20, 20  | Reserved — hyperlinks and separator rule; not for figures |
+
+Black and gray are available for axes, walls, and secondary labels.
+Typical usage:
+
+```latex
+\draw[very thick, darkorange] (0,0) -- (2,0);
+\node[circle, fill=darkorange, inner sep=1.4pt] at (1,0) {};
+\fill[darkorange!12] (0,0) rectangle (2,1);
+\draw[darkolive, thick, domain=0:3, samples=60]
+    plot (\x, {sin(deg(\x))});
+\draw[->, darkolive!75] (0,0) -- (1,1);
+```
+
 ### Tables
 
 Use `booktabs` (\toprule, \midrule, \bottomrule) — avoid

@@ -44,12 +44,18 @@
 % ============================================================
 % COLORS
 %
-% Dark red chosen to be print-safe and unobtrusive.
-% Defined early so it is available to the separator
+% Three-color figure palette: darkred / darkorange / darkolive.
+%   darkred    -- hyperlinks, footnote rule, structural accents
+%   darkorange -- figure accent: strokes, nodes, filled areas (TikZ)
+%   darkolive  -- figure accent: second color for curves and fills
+%
+% Defined early so darkred is available to the separator
 % rule and to hyperref alike.
 % ============================================================
 \RequirePackage{xcolor}
-\definecolor{darkred}{RGB}{120,20,20}
+\definecolor{darkred}   {RGB}{120, 20,  20}
+\definecolor{darkorange}{RGB}{184, 92,   0}
+\definecolor{darkolive} {RGB}{ 74,107,  18}
 
 
 % ============================================================
@@ -108,6 +114,18 @@
   \setlength{\abovedisplayshortskip}{7pt plus 3pt minus 3pt}%
   \setlength{\belowdisplayshortskip}{12pt plus 3pt minus 3pt}%
 }
+
+
+% ============================================================
+% CAPTIONS
+%
+% font=small      -- one step below body text (JHEP/CUP standard)
+% labelfont=bf    -- bold "Figure 1." label (JHEP/CUP standard)
+% labelsep=period -- period after number, not colon (JHEP style)
+% justification: default (singlelinecheck=true) -- single-line captions
+%   are centred automatically; multi-line captions are justified
+% ============================================================
+\RequirePackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 
 % ============================================================

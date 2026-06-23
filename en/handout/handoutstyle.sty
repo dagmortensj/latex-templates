@@ -99,6 +99,18 @@
 
 
 % ============================================================
+% CAPTIONS
+%
+% font=small      -- one step below body text (JHEP/CUP standard)
+% labelfont=bf    -- bold "Figure 1." label (JHEP/CUP standard)
+% labelsep=period -- period after number, not colon (JHEP style)
+% justification: default (singlelinecheck=true) -- single-line captions
+%   are centred automatically; multi-line captions are justified
+% ============================================================
+\RequirePackage[font=small,labelfont=bf,labelsep=period]{caption}
+
+
+% ============================================================
 % SECTION HEADINGS
 % ============================================================
 %
@@ -169,10 +181,15 @@
 % COLORS
 % ============================================================
 %
-% Dark red chosen to be print-safe and unobtrusive.
+% Three-color figure palette: darkred / darkorange / darkolive.
+%   darkred    -- footnote rule, structural accents
+%   darkorange -- figure accent: strokes, nodes, filled areas (TikZ)
+%   darkolive  -- figure accent: second color for curves and fills
 %
 \RequirePackage{xcolor}
-\definecolor{darkred}{RGB}{120,20,20}
+\definecolor{darkred}   {RGB}{120, 20,  20}
+\definecolor{darkorange}{RGB}{184, 92,   0}
+\definecolor{darkolive} {RGB}{ 74,107,  18}
 
 
 % ============================================================

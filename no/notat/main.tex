@@ -17,6 +17,8 @@
 % LAST INN NOTATSTIL
 % =================================================
 \usepackage{notatstil}
+% Kommenter inn for å fjerne lengefarger (ren typografi, ingen farger):
+% \hypersetup{hidelinks}
 
 
 % =================================================
@@ -48,6 +50,8 @@
 \usepackage{graphicx}               % figurer
 \graphicspath{{figurer/}}           % figurer ligger i figurer/
 \usepackage{booktabs}               % tabeller
+\usepackage{float}                  % [H]-plassering for figurer
+\usepackage{tikz}                   % native TikZ-figurer
 % \usepackage{enumitem}             % listetilpasning
 
 
@@ -199,15 +203,54 @@ er samlet i tabell~\ref{tab:konstanter} for referanse.
 % =================================================
 \section{Numeriske metoder}
 
+% TikZ-figureksempel: bruk darkorange til energinivåer / strukturelementer,
+% darkolive til kurver / bølgefunksjoner, svart til akser og vegger, og grå
+% til sekundære etiketter. darkred er reservert for hyperlenker og
+% separatorlinjen -- bruk den ikke i figurer.
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.7\linewidth}
+    \centering
+    \begin{tikzpicture}[>=stealth]
+      % Brønnvegger og gulv
+      \draw[very thick] (0,0) -- (0,4);
+      \draw[very thick] (4,0) -- (4,4);
+      \draw[thick]      (-0.3,0) -- (4.3,0);
+      % Energiakse
+      \draw[->,thick] (-0.8,0) -- (-0.8,4.2)
+        node[above,font=\small] {$E$};
+      % Energinivåer (darkorange)
+      \foreach \n/\y in {1/0.65, 2/1.70, 3/3.10} {
+        \draw[darkorange,thick] (0,\y) -- (4,\y);
+        \node[right,font=\small,darkorange] at (4.15,\y) {$E_{\n}$};
+      }
+      % Bølgefunksjoner (darkolive)
+      \draw[darkolive,thick,domain=0:4,samples=80]
+        plot (\x, {0.65 + 0.38*sin(deg(\x*3.14159/4))});
+      \draw[darkolive,thick,domain=0:4,samples=80]
+        plot (\x, {1.70 + 0.38*sin(deg(2*\x*3.14159/4))});
+      \draw[darkolive,thick,domain=0:4,samples=80]
+        plot (\x, {3.10 + 0.38*sin(deg(3*\x*3.14159/4))});
+      % x-aksemerker (grå for sekundær info)
+      \node[below,font=\small,gray] at (0,-0.1) {$0$};
+      \node[below,font=\small,gray] at (4,-0.1) {$L$};
+    \end{tikzpicture}
+    \caption{Uendelig dyp brønn: energinivåer $E_n \propto n^2$
+             (\textcolor{darkorange}{oransje}) og tilhørende
+             egenfunksjoner $\psi_n$ (\textcolor{darkolive}{olivengrønn}).}
+    \label{fig:bronnn}
+  \end{minipage}
+\end{figure}
+
 \verb|python|-omgivelsen setter kode med Gruvbox Light
-syntaksutheving direkte i notatene. Den passer godt til korte
-skript som følger en analytisk utledning — for eksempel
-beregning av forventningsverdier for egentilstandene funnet i
-de foregående seksjonene.
+syntaksutheving direkte i notatene — godt egnet til korte skript
+som følger en analytisk utledning. Eksempelsystemet gjennom hele
+malen er den uendelig dype brønnen, vist i figur~\ref{fig:bronnn}
+med de tre første energinivåene og egenfunksjonene.
 
 Skriptet nedenfor evaluerer sannsynlighetstettheten
-$|\psi_n(x)|^2$ for den uendelig dype brønnen numerisk, og
-integrerer deretter $\langle x \rangle = \int_0^L x\,|\psi_n|^2\,\mathrm{d}x$
+$|\psi_n(x)|^2$ numerisk, og integrerer
+$\langle x \rangle = \int_0^L x\,|\psi_n|^2\,\mathrm{d}x$
 for de tre første nivåene og bekrefter resultatet $\langle x \rangle = L/2$.
 
 \begin{python}

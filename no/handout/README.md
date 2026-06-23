@@ -118,6 +118,31 @@ mellom eksempler, eller ved temaskifter innen en seksjon.
 \end{figure}
 ```
 
+### TikZ-figurer
+
+`handoutstyle.sty` laster ikke TikZ — legg til `\usepackage{tikz}` i
+pakkeblokken i `main.tex` når du trenger native figurer.
+
+Stilfilen definerer tre navngitte farger med faste roller:
+
+| Farge        | RGB          | Rolle                                                             |
+|--------------|--------------|-------------------------------------------------------------------|
+| `darkorange` | 184, 92, 0   | Primær figuraksent: streker, noder, søyler                        |
+| `darkolive`  | 74, 107, 18  | Sekundær figuraksent: kurver, fyll                                |
+| `darkred`    | 120, 20, 20  | Reservert — fotnotelinje og strukturaksenter; ikke til figurer    |
+
+Svart og grå er tilgjengelig for akser, vegger og sekundære etiketter.
+Typisk bruk:
+
+```latex
+\draw[very thick, darkorange] (0,0) -- (2,0);
+\node[circle, fill=darkorange, inner sep=1.4pt] at (1,0) {};
+\fill[darkorange!12] (0,0) rectangle (2,1);
+\draw[darkolive, thick, domain=0:3, samples=60]
+    plot (\x, {sin(deg(\x))});
+\draw[->, darkolive!75] (0,0) -- (1,1);
+```
+
 ## Typografi
 
 - **Font:** Latin Modern (T1)

@@ -167,20 +167,17 @@
 % =================================================
 % FIGURTEKSTER
 %
-% Smakfulle figur- og tabelltekster:
-%  - mindre skriftstørrelse enn brødteksten
-%  - etiketten ("Figur 1:") i fet skrift
-%  - teksten i vanlig skrift
-%  - hengende innrykk slik at flere linjer justeres
-%    med teksten, ikke med etiketten
+% font=small      -- ett steg under kroppstekst (JHEP/CUP-standard)
+% labelfont=bf    -- fet «Figur 1.»-etikett (JHEP/CUP-standard)
+% labelsep=period -- punktum etter nummeret, ikke kolon (JHEP-stil)
+% justification: default (singlelinecheck=true) -- enkeltlinjer
+%   sentreres automatisk; flerlinjers tekst justeres
+% skip=6pt        -- tettere luft passer tospaltesoppsettet
 % =================================================
 \RequirePackage[
   font=small,
   labelfont=bf,
-  textfont=rm,
-  labelsep=colon,
-  format=plain,
-  justification=justified,
+  labelsep=period,
   singlelinecheck=true,
   skip=6pt
 ]{caption}

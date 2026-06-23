@@ -168,20 +168,17 @@
 % =================================================
 % CAPTIONS
 %
-% Tasteful figure and table captions:
-%  - smaller font than body text
-%  - label ("Figure 1:") in bold
-%  - text in regular weight
-%  - hanging indent so multiple lines align with
-%    the text, not with the label
+% font=small      -- one step below body text (JHEP/CUP standard)
+% labelfont=bf    -- bold "Figure 1." label (JHEP/CUP standard)
+% labelsep=period -- period after number, not colon (JHEP style)
+% justification: default (singlelinecheck=true) -- single-line captions
+%   are centred automatically; multi-line captions are justified
+% skip=6pt        -- tighter gap suits the two-column layout
 % =================================================
 \RequirePackage[
   font=small,
   labelfont=bf,
-  textfont=rm,
-  labelsep=colon,
-  format=plain,
-  justification=justified,
+  labelsep=period,
   singlelinecheck=true,
   skip=6pt
 ]{caption}
