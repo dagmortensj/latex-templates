@@ -111,30 +111,27 @@ som illustrert i figur~\ref{fig:potensial}.
 % separatorlinjen -- bruk den ikke i figurer.
 \begin{figure}[ht]
   \centering
-  \begin{minipage}{0.5\linewidth}
-    \centering
-    \begin{tikzpicture}[>=stealth]
-      % Akser
-      \draw[->,thick] (-2.2,0) -- (2.2,0) node[right,font=\small] {$x$};
-      \draw[->,thick] (0,-0.2) -- (0,3.5) node[above,font=\small] {$V$};
-      % Parabel V(x) ~ x^2 (darkolive)
-      \draw[darkolive,thick,domain=-1.85:1.85,samples=60]
-        plot (\x, {\x*\x});
-      \node[darkolive,right,font=\small] at (1.7,3.1) {$V(x)$};
-      % Energinivå (darkorange)
-      \draw[darkorange,thick] (-1.6,2.56) -- (1.6,2.56);
-      \node[right,font=\small,darkorange] at (1.65,2.56) {$E$};
-      % Klassiske vendepunkter (grå stiplet)
-      \draw[gray,thin,dashed] (-1.6,0) -- (-1.6,2.56);
-      \draw[gray,thin,dashed] ( 1.6,0) -- ( 1.6,2.56);
-      \node[below,font=\small,gray] at (-1.6,0) {$-x_0$};
-      \node[below,font=\small,gray] at ( 1.6,0) {$x_0$};
-    \end{tikzpicture}
-    \caption{Harmonisk potensial (\textcolor{darkolive}{olivengrønn}) med
-             energinivå $E$ (\textcolor{darkorange}{oransje}) og klassiske
-             vendepunkter $\pm x_0$ (grå).}
-    \label{fig:potensial}
-  \end{minipage}
+  \begin{tikzpicture}[>=stealth]
+    % Akser
+    \draw[->,thick] (-2.2,0) -- (2.2,0) node[right,font=\small] {$x$};
+    \draw[->,thick] (0,-0.2) -- (0,3.5) node[above,font=\small] {$V$};
+    % Parabel V(x) ~ x^2 (darkolive)
+    \draw[darkolive,thick,domain=-1.85:1.85,samples=60]
+      plot (\x, {\x*\x});
+    \node[darkolive,right,font=\small] at (1.7,3.1) {$V(x)$};
+    % Energinivå (darkorange)
+    \draw[darkorange,thick] (-1.6,2.56) -- (1.6,2.56);
+    \node[right,font=\small,darkorange] at (1.65,2.56) {$E$};
+    % Klassiske vendepunkter (grå stiplet)
+    \draw[gray,thin,dashed] (-1.6,0) -- (-1.6,2.56);
+    \draw[gray,thin,dashed] ( 1.6,0) -- ( 1.6,2.56);
+    \node[below,font=\small,gray] at (-1.6,0) {$-x_0$};
+    \node[below,font=\small,gray] at ( 1.6,0) {$x_0$};
+  \end{tikzpicture}
+  \caption{Harmonisk potensial (\textcolor{darkolive}{olivengrønn}) med
+           energinivå $E$ (\textcolor{darkorange}{oransje}) og klassiske
+           vendepunkter $\pm x_0$ (grå).}
+  \label{fig:potensial}
 \end{figure}
 
 Underseksjonsoverskriften over ligger ett størrelsessteg under

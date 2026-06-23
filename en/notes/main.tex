@@ -209,37 +209,34 @@ are collected in Table~\ref{tab:constants} for reference.
 % hyperlinks and the separator rule -- do not use it in figures.
 \begin{figure}[H]
   \centering
-  \begin{minipage}{0.7\linewidth}
-    \centering
-    \begin{tikzpicture}[>=stealth]
-      % Potential well walls and floor
-      \draw[very thick] (0,0) -- (0,4);
-      \draw[very thick] (4,0) -- (4,4);
-      \draw[thick]      (-0.3,0) -- (4.3,0);
-      % Energy axis
-      \draw[->,thick] (-0.8,0) -- (-0.8,4.2)
-        node[above,font=\small] {$E$};
-      % Energy levels (darkorange)
-      \foreach \n/\y in {1/0.65, 2/1.70, 3/3.10} {
-        \draw[darkorange,thick] (0,\y) -- (4,\y);
-        \node[right,font=\small,darkorange] at (4.15,\y) {$E_{\n}$};
-      }
-      % Wave functions (darkolive), one half-period per quantum number
-      \draw[darkolive,thick,domain=0:4,samples=80]
-        plot (\x, {0.65 + 0.38*sin(deg(\x*3.14159/4))});
-      \draw[darkolive,thick,domain=0:4,samples=80]
-        plot (\x, {1.70 + 0.38*sin(deg(2*\x*3.14159/4))});
-      \draw[darkolive,thick,domain=0:4,samples=80]
-        plot (\x, {3.10 + 0.38*sin(deg(3*\x*3.14159/4))});
-      % x-axis labels (gray for secondary info)
-      \node[below,font=\small,gray] at (0,-0.1) {$0$};
-      \node[below,font=\small,gray] at (4,-0.1) {$L$};
-    \end{tikzpicture}
-    \caption{Infinite square well: energy levels $E_n \propto n^2$
-             (\textcolor{darkorange}{orange}) and corresponding
-             eigenfunctions $\psi_n$ (\textcolor{darkolive}{olive}).}
-    \label{fig:well}
-  \end{minipage}
+  \begin{tikzpicture}[>=stealth]
+    % Potential well walls and floor
+    \draw[very thick] (0,0) -- (0,4);
+    \draw[very thick] (4,0) -- (4,4);
+    \draw[thick]      (-0.3,0) -- (4.3,0);
+    % Energy axis
+    \draw[->,thick] (-0.8,0) -- (-0.8,4.2)
+      node[above,font=\small] {$E$};
+    % Energy levels (darkorange)
+    \foreach \n/\y in {1/0.65, 2/1.70, 3/3.10} {
+      \draw[darkorange,thick] (0,\y) -- (4,\y);
+      \node[right,font=\small,darkorange] at (4.15,\y) {$E_{\n}$};
+    }
+    % Wave functions (darkolive), one half-period per quantum number
+    \draw[darkolive,thick,domain=0:4,samples=80]
+      plot (\x, {0.65 + 0.38*sin(deg(\x*3.14159/4))});
+    \draw[darkolive,thick,domain=0:4,samples=80]
+      plot (\x, {1.70 + 0.38*sin(deg(2*\x*3.14159/4))});
+    \draw[darkolive,thick,domain=0:4,samples=80]
+      plot (\x, {3.10 + 0.38*sin(deg(3*\x*3.14159/4))});
+    % x-axis labels (gray for secondary info)
+    \node[below,font=\small,gray] at (0,-0.1) {$0$};
+    \node[below,font=\small,gray] at (4,-0.1) {$L$};
+  \end{tikzpicture}
+  \caption{Infinite square well: energy levels $E_n \propto n^2$
+           (\textcolor{darkorange}{orange}) and corresponding
+           eigenfunctions $\psi_n$ (\textcolor{darkolive}{olive}).}
+  \label{fig:well}
 \end{figure}
 
 The \verb|python| environment typesets code with Gruvbox Light
