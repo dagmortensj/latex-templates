@@ -26,6 +26,21 @@
 
 
 % =================================================
+% VALGFRIE HANDOUT-JUSTERINGER  (fjern % for å slå på)
+% =================================================
+
+% --- Av med avsnittsinnrykk ---
+% Bruk parskip, ikke bare \parindent=0pt: malen nuller også
+% \parskip, så parindent alene gir avsnitt uten luft mellom.
+% \usepackage{parskip}
+
+% --- Av med sidetall (trenger BEGGE linjer) ---
+% \maketitle tvinger "plain" på side 1, så fjern også %-tegnet på
+% \thispagestyle{empty} etter \maketitle for å fjerne tallet der.
+% \pagestyle{empty}
+
+
+% =================================================
 % EGENDEFINERTE PAKKER
 %
 % Legg til prosjektspesifikke pakker her.
@@ -69,6 +84,7 @@
 \begin{document}
 
 \maketitle
+% \thispagestyle{empty}   % side 1: fjerner tallet (se \pagestyle over)
 
 
 % =================================================

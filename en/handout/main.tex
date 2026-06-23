@@ -26,6 +26,21 @@
 
 
 % =================================================
+% OPTIONAL HANDOUT TWEAKS  (uncomment to enable)
+% =================================================
+
+% --- No paragraph indentation ---
+% Use parskip, not a bare \parindent=0pt: the style also zeroes
+% \parskip, so parindent alone leaves paragraphs with no separation.
+% \usepackage{parskip}
+
+% --- No page numbers (needs BOTH lines) ---
+% \maketitle forces "plain" on page 1, so also uncomment the
+% \thispagestyle{empty} after \maketitle to clear the number there.
+% \pagestyle{empty}
+
+
+% =================================================
 % CUSTOM PACKAGES
 %
 % Add project-specific packages here.
@@ -69,6 +84,7 @@
 \begin{document}
 
 \maketitle
+% \thispagestyle{empty}   % page 1: clears the number (see \pagestyle above)
 
 
 % =================================================
