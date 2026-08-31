@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{notesstyle}[2026/08/31 v1.6 Notes style — CUP-inspired book typography in article form]
+\ProvidesPackage{notesstyle}[2026/08/31 v1.7 Notes style — CUP-inspired book typography in article form]
 
 % ============================================================
 % notesstyle.sty — long-form notes
@@ -27,11 +27,15 @@
 % ============================================================
 % FONT & MICROTYPOGRAPHY
 %
-% Latin Modern in T1 encoding. T1 is not decoration: with
-% the old OT1 encoding, accented letters are assembled from
+% MLModern in T1 encoding. It is Computer Modern redrawn
+% with a heavier stroke — the same call the lua templates
+% make with NewComputerModern: plain Latin Modern goes thin
+% in laser print. The metrics are identical to Latin
+% Modern's, so line breaking and every derived number in
+% this file stand untouched. T1 is not decoration: with the
+% old OT1 encoding, accented letters are assembled from
 % accent boxes, and hyphenation fails in words carrying
-% them. lmodern is the vector edition of Computer Modern —
-% the same drawing, sharp in PDF.
+% them.
 %
 % Text and mathematics come from the same family at the
 % same size, so nothing here needs scaling.
@@ -41,7 +45,7 @@
 % lines, and tracking letterspaces small caps.
 % ============================================================
 \RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
+\RequirePackage{mlmodern}
 
 \RequirePackage[
   expansion=true,

@@ -170,7 +170,7 @@ vertikale streker.
 
 ## Typografi
 
-- **Font:** Latin Modern (T1)
+- **Font:** MLModern (T1)
 - **Sideoppsett:** A4, symmetriske marger (3.0 cm V/H)
 - **Linjeavstand:** 1.07
 - **Avsnitt:** innrykk, ikke linjeskift

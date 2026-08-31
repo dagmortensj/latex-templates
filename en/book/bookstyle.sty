@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bookstyle}[2026/08/31 v1.9 — frozen CUP-style book layout]
+\ProvidesPackage{bookstyle}[2026/08/31 v1.10 — frozen CUP-style book layout]
 
 % ============================================================
 % PACKAGE OPTIONS
@@ -45,21 +45,25 @@
 % ============================================================
 % FONTS
 %
-% Latin Modern in T1 encoding. T1 is not decoration: with
-% the old OT1 encoding, accented letters are assembled from
+% MLModern in T1 encoding. It is Computer Modern redrawn
+% with a heavier stroke — the same call the lua templates
+% make with NewComputerModern: plain Latin Modern goes thin
+% in laser print. The metrics are identical to Latin
+% Modern's, so line breaking and every derived number in
+% this file stand untouched. T1 is not decoration: with the
+% old OT1 encoding, accented letters are assembled from
 % accent boxes, and hyphenation fails in words carrying
-% them. lmodern is the vector edition of Computer Modern —
-% the same drawing, sharp in PDF.
+% them.
 %
-% The mathematics comes from the same Latin Modern family
-% at the same size as the text. That is why there is no
+% The mathematics comes from the same family at the same
+% size as the text. That is why there is no
 % downscaling here, and no small equation tag the way the
 % lua book has one: there the maths font is scaled to 0.90
 % and the tag shrinks to match. Here the \normalfont tag is
 % right as it is.
 % ============================================================
 \RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
+\RequirePackage{mlmodern}
 
 
 % ============================================================

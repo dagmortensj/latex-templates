@@ -145,7 +145,7 @@ Typisk bruk:
 
 ## Typografi
 
-- **Font:** Latin Modern (T1)
+- **Font:** MLModern (T1)
 - **Sideoppsett:** A4, symmetriske marger (3.0 cm V/H)
 - **Linjeavstand:** 1.04
 - **Avsnitt:** innrykk, ikke linjeskift

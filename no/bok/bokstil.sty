@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bokstil}[2026/08/31 v1.9 — frosset CUP-stil bokoppsett]
+\ProvidesPackage{bokstil}[2026/08/31 v1.10 — frosset CUP-stil bokoppsett]
 
 % ============================================================
 % PAKKEOPSJONER
@@ -44,21 +44,24 @@
 % ============================================================
 % FONTER
 %
-% Latin Modern i T1-koding. T1 er ikke pynt: med den gamle
-% OT1-kodingen settes æ, ø og å sammen av aksentbokser, og
-% da virker ikke orddelingen i norske ord. lmodern er
-% vektorutgaven av Computer Modern — samme tegning, skarp
-% i PDF.
+% MLModern i T1-koding. Det er Computer Modern tegnet med
+% tykkere strek — samme valg som lua-malene gjør med
+% NewComputerModern: vanlig Latin Modern blir tynn på
+% laserutskrift. Metrikkene er identiske med Latin Moderns,
+% så ombrekkingen og alle utledede tall i denne fila står
+% urørt. T1 er ikke pynt: med den gamle OT1-kodingen settes
+% æ, ø og å sammen av aksentbokser, og da virker ikke
+% orddelingen i norske ord.
 %
-% Matematikken kommer fra samme Latin Modern-familie i
-% samme størrelse som teksten. Derfor finnes det ingen
+% Matematikken kommer fra samme familie i samme størrelse
+% som teksten. Derfor finnes det ingen
 % nedskalering her, og heller ingen liten ligningstagg slik
 % lua-boka har: der er mattefonten skalert til 0,90 og
 % taggen krympes til å matche. Her stemmer \normalfont-
 % taggen som den er.
 % ============================================================
 \RequirePackage[T1]{fontenc}
-\RequirePackage{lmodern}
+\RequirePackage{mlmodern}
 
 
 % ============================================================

@@ -169,7 +169,7 @@ vertical lines.
 
 ## Typography
 
-- **Font:** Latin Modern (T1)
+- **Font:** MLModern (T1)
 - **Page size:** A4, symmetric margins (3.0 cm L/R)
 - **Line spacing:** 1.07
 - **Paragraphs:** indented, no line break
