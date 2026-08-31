@@ -1,27 +1,36 @@
+% ============================================================
+% main.tex — the article itself
+%
+% This file is structure and content. Every typographic
+% decision lives in ffvstyle.sty, which also loads babel.
+%
+% Compile with pdfLaTeX:
+%   latexmk main
+% ============================================================
 \documentclass[a4paper,10pt,twocolumn]{article}
 
-% =================================================
+% ============================================================
 % ARTICLE STYLE
-% =================================================
+% ============================================================
 \usepackage{ffvstyle}
 % Uncomment to suppress link colours (pure typography, no colour at all):
 % \hypersetup{hidelinks}
 
-% =================================================
+% ============================================================
 % PHYSICS AND MATHEMATICS
-% =================================================
+% ============================================================
 \usepackage{amsmath, amssymb}
 \usepackage{mathtools}
 \usepackage{physics}
 \usepackage{bm}
 
-% =================================================
+% ============================================================
 % CUSTOM PACKAGES AND COMMANDS
 %
 % Add additional packages and custom commands here.
 % Examples that are often useful are commented out
 % below — remove the % to activate them.
-% =================================================
+% ============================================================
 
 % --- Additional mathematics packages ---
 % \usepackage{slashed}        % Feynman slash for Dirac matrices
@@ -42,17 +51,17 @@
 % \DeclareMathOperator{\Tr}{Tr}
 % \DeclareMathOperator{\sgn}{sgn}
 
-% =================================================
+% ============================================================
 % METADATA — fill in here
-% =================================================
+% ============================================================
 \title{ARTICLE TITLE\\[0.4em]
 {\large Optional subtitle}}
 \author{First Last}
 \date{\today}
 
-% =================================================
+% ============================================================
 % DOCUMENT
-% =================================================
+% ============================================================
 \begin{document}
 
 \twocolumn[
@@ -66,7 +75,7 @@
   \end{lead}
 ]
 
-% =================================================
+% ============================================================
 \section{Introduction}
 
 Write the introduction here. State the problem, give the necessary
@@ -74,7 +83,7 @@ background, and end with a short overview of the article's structure
 if useful. Paragraphs are marked with indentation --- not with extra
 line breaks.
 
-% =================================================
+% ============================================================
 \section{Section Two}
 
 Mathematics is set inline as $E = mc^2$ or as numbered equations:
@@ -145,20 +154,20 @@ Use subsections to structure longer sections.
   \end{tabular}
 \end{table}
 
-% =================================================
+% ============================================================
 \section{Conclusion}
 
 Summarize the main results and feel free to point toward open
 questions or further work.
 
-% =================================================
+% ============================================================
 % REFERENCES
 % Compile order:
 %   pdflatex main
 %   bibtex   main
 %   pdflatex main
 %   pdflatex main
-% =================================================
+% ============================================================
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 

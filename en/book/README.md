@@ -96,8 +96,10 @@ vertical lines.
 ## Typography
 
 - **Font:** Latin Modern (T1)
-- **Page size:** A4 (draft) or B5 (print), via `\documentclass`
-- **Margins:** asymmetric for binding (inner 2.7 cm, outer 2.3 cm)
+- **Page size:** B5 (print) or A4 (draft), via `\documentclass`
+- **Measure:** 116 mm — 2.36 lowercase alphabets, inside Bringhurst's
+  1.8–2.4 window, the same measure as the lualatex book
+- **Margins:** inner 2.6 cm, outer 3.4 cm, top 2.6 cm, bottom 3.9 cm
 - **Line spacing:** 1.07
 - **Paragraphs:** indented, no line break
 - **Microtypography:** protrusion, expansion, tracking enabled
@@ -108,11 +110,20 @@ vertical lines.
 ## Changing paper size
 
 ```latex
-\documentclass[11pt,twoside,a4paper]{book}   % draft
 \documentclass[11pt,twoside,b5paper]{book}   % print
+\documentclass[11pt,twoside,a4paper]{book}   % draft
 ```
 
-Margins adapt automatically.
+The **measure** is held constant across the two, not the margins:
+both give a 116 mm text block, so an A4 draft breaks lines exactly as
+the printed B5 will, with over 4 cm left over for notes. Page breaks
+still differ — A4 is taller.
+
+A third mode gives page proofs: keep `b5paper` and load the style as
+`\usepackage[proof]{bookstyle}` — the B5 page is typeset untouched and
+centred on an A4 sheet with crop marks, so line *and* page breaks match
+print exactly. Add `noinfo` to the `crop` options in the style file to
+drop the info line at the top of each sheet.
 
 ## BibTeX sources
 

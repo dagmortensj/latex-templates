@@ -1,4 +1,4 @@
-# latex-templates
+# pdflatex-templates
 
 A small collection of personal LaTeX templates for academic and
 teaching work — books, articles, lecture notes, problem sheets.

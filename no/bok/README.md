@@ -96,8 +96,10 @@ vertikale streker.
 ## Typografi
 
 - **Font:** Latin Modern (T1)
-- **Sideoppsett:** A4 (utkast) eller B5 (trykk), via `\documentclass`
-- **Marger:** asymmetriske for innbinding (innside 2.7 cm, utside 2.3 cm)
+- **Sideoppsett:** B5 (trykk) eller A4 (utkast), via `\documentclass`
+- **Satsbredde:** 116 mm — 2,36 lilleboksalfabeter, innenfor Bringhursts
+  vindu på 1,8–2,4, samme mål som lualatex-boka
+- **Marger:** innside 2,6 cm, utside 3,4 cm, topp 2,6 cm, bunn 3,9 cm
 - **Linjeavstand:** 1.07
 - **Avsnitt:** innrykk, ikke linjeskift
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
@@ -108,11 +110,20 @@ vertikale streker.
 ## Endre papirstørrelse
 
 ```latex
-\documentclass[11pt,twoside,a4paper]{book}   % utkast
 \documentclass[11pt,twoside,b5paper]{book}   % trykk
+\documentclass[11pt,twoside,a4paper]{book}   % utkast
 ```
 
-Margene tilpasser seg automatisk.
+Det er **satsbredden** som holdes konstant mellom de to, ikke margene:
+begge gir en sats på 116 mm, så et A4-utkast brekker linjer nøyaktig som
+den trykte B5-en, med over 4 cm igjen til notater. Sidebrudd blir likevel
+ulike — A4 er høyere.
+
+En tredje modus gir sidekorrektur: behold `b5paper` og last stilen som
+`\usepackage[korrektur]{bokstil}` — B5-siden settes uendret og sentreres
+på et A4-ark med skjæremerker, så både linje- *og* sidebrudd matcher
+trykk nøyaktig. Legg til `noinfo` i `crop`-opsjonene i stilfila for å
+fjerne informasjonslinjen øverst på arket.
 
 ## BibTeX-kilder
 

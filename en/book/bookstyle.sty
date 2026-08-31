@@ -1,42 +1,75 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{bookstyle}[2026/05/07 v1.8 — frozen CUP-style book layout]
+\ProvidesPackage{bookstyle}[2026/08/31 v1.9 — frozen CUP-style book layout]
 
-% =================================================
-% STATUS: FROZEN
+% ============================================================
+% PACKAGE OPTIONS
 %
-% This style file defines the typographic appearance
-% of an academic monograph (CUP-style).
+%   \usepackage{bookstyle}            normal
+%   \usepackage[proof]{bookstyle}     page proofs: the B5
+%                                     page untouched, centred
+%                                     on A4 with crop marks
 %
-% Physical paper size (A4, B5, etc.) MUST be set
-% via the document class, e.g.:
-%
-%   \documentclass[a4paper]{book}
-%   \documentclass[b5paper]{book}
-%
-% Do NOT modify this file during writing.
-% Copy and version it if changes are needed.
-% =================================================
+% Proof mode requires b5paper in \documentclass. The
+% typesetting is untouched, so both line and page breaks are
+% identical to print — unlike the a4paper draft, which
+% shares line breaks but not page breaks. With a4paper the
+% option is ignored with a warning. 'korrektur' is accepted
+% as a synonym.
+% ============================================================
+\newif\ifbk@korrektur
+\DeclareOption{korrektur}{\bk@korrekturtrue}
+\DeclareOption{proof}{\bk@korrekturtrue}
+\ProcessOptions\relax
 
 
-% =================================================
-% CORE FONT SETUP
+% ============================================================
+% bookstyle.sty — a CUP-style monograph
 %
-% Latin Modern with T1 encoding:
-%  - high-quality PDF output
-%  - proper hyphenation
-%  - stable across platforms
-% =================================================
+% Every typographic decision lives in this file. You should
+% not need to change anything here to write a book: set the
+% paper size in main.tex and start writing.
+%
+%   \documentclass[11pt,twoside,b5paper]{book}   % print
+%   \documentclass[11pt,twoside,a4paper]{book}   % draft
+%
+% Engine: pdfLaTeX. This is the pdflatex sibling of the book
+% in lualatex-templates: the same layout, but with Latin
+% Modern in place of the OpenType fonts, which need LuaLaTeX.
+%
+% The order below: fonts, microtypography, geometry,
+% spacing, sectioning, page furniture, citations, and
+% hyperref last.
+% ============================================================
+
+
+% ============================================================
+% FONTS
+%
+% Latin Modern in T1 encoding. T1 is not decoration: with
+% the old OT1 encoding, accented letters are assembled from
+% accent boxes, and hyphenation fails in words carrying
+% them. lmodern is the vector edition of Computer Modern —
+% the same drawing, sharp in PDF.
+%
+% The mathematics comes from the same Latin Modern family
+% at the same size as the text. That is why there is no
+% downscaling here, and no small equation tag the way the
+% lua book has one: there the maths font is scaled to 0.90
+% and the tag shrinks to match. Here the \normalfont tag is
+% right as it is.
+% ============================================================
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 
 
-% =================================================
+% ============================================================
 % MICROTYPOGRAPHY
 %
-% Subtle protrusion and expansion improve justification
-% without visible distortion. Tracking enabled for
-% small caps and headings.
-% =================================================
+% protrusion hangs punctuation into the margin, expansion
+% stretches glyphs by fractions of a percent to avoid loose
+% lines, and tracking letterspaces the small caps. Switch
+% any of the three off here if a page looks wrong.
+% ============================================================
 \RequirePackage[
   expansion=true,
   protrusion=true,
@@ -44,55 +77,85 @@
 ]{microtype}
 
 
-% =================================================
+% ============================================================
 % PAGE GEOMETRY
 %
-% Margins are defined independently of paper size.
-% They adapt automatically to A4, B5, etc.
+% MEASURE. Bringhurst measures line length in lowercase
+% alphabets, and 1.8–2.4 is the usable window. Latin
+% Modern's alphabet is 49.1mm at 11pt, so the 116mm below
+% is 2.36 alphabets — exactly the measure the lua book
+% lands on with Garamond at 12pt. The two books share their
+% readability target, each with its own face.
 %
-% Inner / outer margins are asymmetric for binding.
-% =================================================
-\RequirePackage[
-  inner=2.7cm,
-  outer=2.3cm,
-  top=2.3cm,
-  bottom=2.7cm
-]{geometry}
+% MARGINS. Outer wider than inner, deliberately: the two
+% inner margins meet across the spine and read as one
+% space, while the outer edge is where the thumb sits.
+% 2.6cm inside still clears a glue binding, and the wide
+% outer edge is where an oversized equation can hang out.
+%
+% It is the measure, not the margins, that stays fixed when
+% the paper size changes: an A4 draft breaks lines exactly
+% like the printed B5, with over 4cm left for notes. Page
+% breaks still differ — A4 is taller.
+% ============================================================
+\RequirePackage{geometry}
+\ifdim\paperwidth>18cm
+  \geometry{inner=4.5cm, outer=4.9cm, top=2.6cm, bottom=3.9cm}
+\else
+  \geometry{inner=2.6cm, outer=3.4cm, top=2.6cm, bottom=3.9cm}
+\fi
+
+% Page proofs: the B5 sheet centred on A4 with crop marks
+% (cam) and crop's info line at the top — add noinfo to the
+% options below for a clean sheet. Loaded here, after the
+% geometry is set.
+\ifbk@korrektur
+  \ifdim\paperwidth>18cm
+    \PackageWarning{bookstyle}{The 'proof' option requires b5paper; option ignored}%
+  \else
+    \RequirePackage[cam,a4,center]{crop}
+  \fi
+\fi
 
 
-% =================================================
-% PARAGRAPH & LINE SPACING
+% ============================================================
+% PARAGRAPHS AND LEADING
 %
-% Classical book typography:
-%  - indented paragraphs
-%  - no inter-paragraph skip
-%  - slightly loose leading for readability
-% =================================================
+% Indented paragraphs with no space between — the classical
+% book page.
+% ============================================================
 \setlength{\parindent}{15pt}
 \setlength{\parskip}{0pt}
 
+% Latin Modern at 11pt has an x-height of 4.71pt — the same
+% optical class as Garamond Libre at 12pt (4.88pt), so the
+% two books read the same size even though the point sizes
+% differ. The 1.07 stretch gives a 14.1pt baseline; the
+% baseline-to-x-height ratio lands at 3.0 against the lua
+% book's 3.03 — the page breathes alike in both.
 \RequirePackage{setspace}
 \setstretch{1.07}
 
 
-% =================================================
+% ============================================================
 % DISPLAYED EQUATION SPACING
 %
-% Explicit control ensures consistent visual rhythm around
-% mathematics, shared with the notes style so the two read as a
-% family. Only the ABOVE skip shrinks after a short lead-in line
-% (a short line already leaves trailing space), and never to zero;
-% the BELOW skip is always the full value, so the gap under an
-% equation never depends on what came above it:
-%     above 12pt   above (after short line)  7pt
-%     below 12pt   below (always)           12pt
+% Shared with the notes style, so the two read as a family.
 %
-% Applied via \AtBeginDocument: LaTeX's \normalsize (run by
-% \begin{document}) resets all four display skips to the class
-% defaults, so values set here in the preamble would be silently
-% overridden. Setting them after \normalsize makes them take
-% effect; later size changes are grouped and restore them on exit.
-% =================================================
+%   above  12pt     after a short lead-in line   7pt
+%   below  12pt     always                      12pt
+%
+% Only the space above shrinks after a short line, since a
+% short line already leaves air of its own — and it never
+% shrinks to zero. The space below is always full, so the
+% gap under an equation never depends on what came before.
+%
+% \AtBeginDocument is not decoration. \begin{document} runs
+% \normalsize, which resets all four skips to the class
+% defaults, so values set in the preamble are silently
+% discarded. Later size changes are grouped and restore
+% these on exit.
+% ============================================================
 \AtBeginDocument{%
   \setlength{\abovedisplayskip}{12pt plus 3pt minus 3pt}%
   \setlength{\belowdisplayskip}{12pt plus 3pt minus 3pt}%
@@ -101,28 +164,31 @@
 }
 
 
-% =================================================
+% ============================================================
 % CAPTIONS
 %
-% font=small      -- one step below body text (JHEP/CUP standard)
-% labelfont=bf    -- bold "Figure 1." label (JHEP/CUP standard)
-% labelsep=period -- period after number, not colon (JHEP style)
-% justification: default (singlelinecheck=true) -- single-line captions
-%   are centred automatically; multi-line captions are justified
-% =================================================
+%   font=small       one step below body text
+%   labelfont=bf     bold "Figure 1." label
+%   labelsep=period  a period after the number, not a colon
+%
+% Single-line captions centre themselves; longer ones are
+% justified. Both are caption's defaults.
+% ============================================================
 \RequirePackage[font=small,labelfont=bf,labelsep=period]{caption}
 
 
-% =================================================
-% SECTIONING & CHAPTER DESIGN (MAIN MATTER)
+% ============================================================
+% SECTIONING
 %
-% titlesec provides full control over hierarchy
-% and spacing, independent of the base class.
-% =================================================
+% A chapter opens on its own page: "Chapter N" in small caps
+% above the title in full caps. Sections and below are bold
+% and upright, one size step apart. \chaptername and
+% \partname come from babel and therefore follow the
+% document language.
+% ============================================================
 \RequirePackage{titlesec}
 
 % ------------------ Main chapters ----------------
-% Uses \chaptername (babel-localized: "Chapter" / "Kapittel" / ...)
 \titleformat{\chapter}[display]
   {\normalfont}
   {\filcenter\scshape \chaptername\ \thechapter}
@@ -149,23 +215,23 @@
   {0pt}{2ex plus .8ex minus .2ex}{1.2ex plus .2ex}
 
 
-% =================================================
+% ============================================================
 % SECTION NUMBERING
 %
-% Sections, subsections, and below are unnumbered
-% but still appear in the table of contents.
-% Parts and chapters remain numbered.
-% =================================================
+% Parts and chapters are numbered; sections and below are
+% not, but they still appear in the table of contents. Set
+% secnumdepth to 2 if you want numbered sections.
+% ============================================================
 \setcounter{secnumdepth}{0}
 
 
-% =================================================
+% ============================================================
 % PART PAGES
 %
-% Silent, centered, unnumbered pages.
-% Visual rhythm matches chapter and title pages.
-% =================================================
-% Uses \partname (babel-localized: "Part" / "Del" / ...)
+% A part title alone on an unnumbered page, set a third of
+% the way down — the same rhythm as the chapter openings
+% and the title page.
+% ============================================================
 \titleformat{\part}[display]
   {\normalfont}
   {\filcenter\scshape \partname\ \thepart}
@@ -178,12 +244,19 @@
 \assignpagestyle{\part}{empty}
 
 
-% =================================================
-% DROP CAPS FOR CHAPTER OPENINGS
+% ============================================================
+% DROP CAP AT CHAPTER OPENINGS
 %
-% Explicit macro keeps usage intentional.
-% No automatic injection.
-% =================================================
+%   \chapter{Chapter Title}
+%   \chapteropening{T}{he first sentence}
+%   continues here.
+%
+% Three lines deep, with the rest of the opening phrase in
+% small caps. Nothing is injected automatically — a chapter
+% without \chapteropening simply starts as ordinary text.
+% Keep the opening paragraph long enough to fill the height
+% of the drop cap, or the next heading collides with it.
+% ============================================================
 \RequirePackage{lettrine}
 
 \newcommand{\chapteropening}[2]{%
@@ -197,14 +270,13 @@
 }
 
 
-% =================================================
-% TABLE OF CONTENTS (BOOK STYLE)
+% ============================================================
+% TABLE OF CONTENTS
 %
-% Clean, quiet hierarchy:
-%  - no framing rules
-%  - restrained spacing
-%  - title styled like a chapter
-% =================================================
+% No dot leaders and no frames: the page numbers sit
+% against the right margin and the title is set like a
+% chapter. Called with \booktoc.
+% ============================================================
 \RequirePackage{tocloft}
 
 \renewcommand{\cfttoctitlefont}{\Huge\scshape}
@@ -218,6 +290,13 @@
 \setlength{\cftsecnumwidth}{3.0em}
 \setlength{\cftsubsecnumwidth}{3.5em}
 
+% Unnumbered sections otherwise start at tocloft's 1.5em —
+% left of the chapter titles at 2.5em, so the children
+% outdent past their parent. Line the sections up under the
+% chapter title, and subsections one step further.
+\setlength{\cftsecindent}{2.5em}
+\setlength{\cftsubsecindent}{3.5em}
+
 \setlength{\cftbeforechapskip}{6pt}
 \setlength{\cftbeforesecskip}{2.5pt}
 \setlength{\cftbeforesubsecskip}{1.5pt}
@@ -227,19 +306,23 @@
 }
 
 
-% =================================================
-% HEADERS & PAGE STYLES
+% ============================================================
+% RUNNING HEADS AND PAGE STYLES
 %
-% fancyhdr is used explicitly and locally.
-% No global redefinition of 'plain'.
+% Page numbers sit against the outer edge, the running
+% chapter or section mark in the centre. Chapter-opening
+% pages drop the head and get the page number centred at
+% the foot instead. 'plain' is untouched, so the front
+% matter is unaffected.
 %
-% Position codes used below:
-%   L = left,   C = centre, R = right
-%   E = even page (verso), O = odd page (recto)
-% In two-side layout, page numbers go on the outer
-% edge and section/chapter marks on the inner.
-% =================================================
+% Position codes in the definitions below:
+%   L left, C centre, R right
+%   E even page (verso), O odd page (recto)
+% ============================================================
 \RequirePackage{fancyhdr}
+% 14pt instead of the class default: with Latin Modern's
+% extenders at 11pt, fancyhdr wants at least 13.6pt and
+% complains below that. 14pt is the first whole point above.
 \setlength{\headheight}{14pt}
 
 \renewcommand{\headrulewidth}{0pt}
@@ -254,7 +337,7 @@
   \fancyhead[CO]{\small\itshape\rightmark}
 }
 
-% ------------------ Chapter opening pages --------
+% ------------------ Chapter opening pages ---------
 \fancypagestyle{chapteropen}{
   \fancyhf{}
   \fancyfoot[C]{\thepage}
@@ -275,12 +358,14 @@
 }
 
 
-% =================================================
-% PATCH MAIN-MATTER CHAPTER OPENINGS ONLY
+% ============================================================
+% PAGE STYLE FOR CHAPTER OPENINGS
 %
-% Redirect chapter opening pages away from 'plain'
-% without affecting front-matter behavior.
-% =================================================
+% \chapter hardcodes \thispagestyle{plain} on the opening
+% page. This patch redirects it to 'chapteropen' without
+% touching 'plain' itself, which the front matter still
+% uses.
+% ============================================================
 \RequirePackage{etoolbox}
 \makeatletter
 
@@ -292,22 +377,29 @@
 \makeatother
 
 
-% =================================================
-% FRONT-MATTER CHAPTER MACRO
+% ============================================================
+% BLANK VERSO PAGES
 %
-% Used for Preface, Acknowledgments, etc.
+% \cleardoublepage inserts a blank page to land on a recto,
+% but the blank inherits the current page style and carries
+% a running head and folio. The convention is that inserted
+% blanks are completely empty. emptypage patches
+% \cleardoublepage to do exactly that.
+% ============================================================
+\RequirePackage{emptypage}
+
+
+% ============================================================
+% FRONT MATTER CHAPTERS
 %
-% Design goals:
-%  - unnumbered
-%  - slightly smaller than main chapters
-%  - flush left
-%  - restrained spacing
-%  - correct page-style behavior
+%   \frontchapter{Preface}
 %
-% NOTE:
-%  - First paragraph indentation is handled explicitly
-%    in the document using \noindent.
-% =================================================
+% An unnumbered, flush-left heading one step smaller than a
+% main chapter, for prefaces, acknowledgements and the
+% like. It sets the running head itself, and that is what
+% keeps "Chapter 0" from appearing. Start the first
+% paragraph with \noindent.
+% ============================================================
 \makeatletter
 
 \newcommand{\frontchapter}[1]{%
@@ -326,23 +418,30 @@
 \makeatother
 
 
-% =================================================
-% HEADER MARKS
+% ============================================================
+% RUNNING HEADS
 %
-% Clean, minimal running headers.
-% =================================================
+% Chapter title on the verso, section title on the recto,
+% neither in capitals.
+% ============================================================
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{#1}}
 
 \pagestyle{chapterstyle}
 
 
-% =================================================
+% ============================================================
 % TITLE PAGE
 %
-% Explicit, robust title page.
-% No reliance on \maketitle.
-% =================================================
+%   \title{...}  \author{...}  \date{...}
+%   \subtitle{...}                 % optional
+%   \booktitlepage
+%
+% The title in full-size small caps, an italic subtitle
+% beneath it when set, the author below that, the date at
+% the foot. Written out rather than built on \maketitle, so
+% every space is visible here.
+% ============================================================
 \makeatletter
 
 \def\@subtitle{}
@@ -377,16 +476,14 @@
 \makeatother
 
 
-% =================================================
+% ============================================================
 % DEDICATION PAGE
 %
-% Recto page with a single short italic line,
-% centered horizontally, set in the upper third
-% of the page. Followed by a blank verso.
-%
-% Usage:
 %   \dedicationpage{To my parents.}
-% =================================================
+%
+% One short italic line, centred a quarter of the way down
+% a recto page, followed by an empty verso.
+% ============================================================
 \newcommand{\dedicationpage}[1]{%
   \cleardoublepage
   \thispagestyle{empty}
@@ -399,33 +496,34 @@
 }
 
 
-% =================================================
+% ============================================================
 % CITATIONS
 %
-% Numerical superscript citations, placed exactly
-% where written in the source (no auto-shifting past
-% punctuation). Multiple keys are sorted and
-% compressed into ranges, e.g. \cite{a,b,c} -> 1-3.
+%   \cite{key}            superscript ¹
+%   \cite{a,b,c}          sorted and compressed, ¹⁻³
+%   \bibliography{...}    in the back matter of main.tex
 %
-% Usage:
-%   \cite{key}         in the text
-%   \bibliography{...} in main.tex back matter
-% =================================================
+% The 'nomove' option keeps a citation exactly where you
+% wrote it instead of shifting it past punctuation, so put
+% it right after the word it belongs to.
+% ============================================================
 \RequirePackage[superscript,nomove]{cite}
 
-% Bibliography list labels: "1." instead of "[1]",
-% to match the superscript style used in the text.
+% Labels in the bibliography list: "1." instead of "[1]",
+% to match the superscript style in the text.
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.}
 \makeatother
 
 
-% =================================================
+% ============================================================
 % HYPERLINKS
 %
-% MUST BE LOADED LAST.
-% Subtle, print-safe appearance.
-% =================================================
+% Loaded last, because hyperref patches commands other
+% packages define. The links are black rather than
+% coloured, so the page prints exactly as it would without
+% them, while they stay live in a PDF reader.
+% ============================================================
 \RequirePackage{xcolor}
 \definecolor{linkblack}{RGB}{0,0,0}
 
@@ -438,8 +536,9 @@
   linktoc=page
 }
 
-% Override hyperref's default of colouring TOC page
-% numbers — keep them black to match the rest.
+% hyperref colours the page numbers in the table of
+% contents by default; these three keep them black like
+% everything else.
 \makeatletter
 \renewcommand{\cftchappagefont}{\normalfont\color{black}}
 \renewcommand{\cftsecpagefont}{\normalfont\color{black}}
@@ -447,7 +546,7 @@
 \makeatother
 
 
-% =================================================
+% ============================================================
 % END OF FILE
-% =================================================
+% ============================================================
 \endinput

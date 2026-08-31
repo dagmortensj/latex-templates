@@ -1,41 +1,44 @@
-% =================================================
-% HOVEDDOKUMENT (BOKMAL)
-% =================================================
+% ============================================================
+% main.tex — selve boka
 %
-% Denne filen definerer den logiske og strukturelle
-% oppbyggingen av boken.
+% Denne fila er struktur og innhold. Alle typografiske
+% valg bor i bokstil.sty.
 %
-% Det typografiske utseendet er definert i sin helhet
-% i bookstyle.sty og bør ikke endres her.
-%
-% =================================================
-
-
-% ------------------ Utkast / skriving -------------
-\documentclass[11pt,twoside,a4paper]{book}
+% Kompiler med pdfLaTeX:
+%   latexmk main
+% ============================================================
 
 % ------------------ Endelig trykk -----------------
-% \documentclass[11pt,twoside,b5paper]{book}
+\documentclass[11pt,twoside,b5paper]{book}
+
+% ------------------ Utkast / skriving -------------
+% Samme satsbredde og ombrekking som B5, med over 4 cm
+% marger til notater.
+% \documentclass[11pt,twoside,a4paper]{book}
 
 
-% =================================================
+% ============================================================
 % LAST INN BOKSTIL
-% =================================================
+% ============================================================
 \usepackage{bokstil}
 
+% Sidekorrektur — B5-siden uendret, sentrert på A4 med
+% skjæremerker (krever b5paper over). Bytt ut linjen over med:
+% \usepackage[korrektur]{bokstil}
 
-% =================================================
+
+% ============================================================
 % SPRÅK
-% =================================================
+% ============================================================
 \usepackage[norsk]{babel}
 
 
-% =================================================
+% ============================================================
 % EGENDEFINERTE PAKKER
 %
 % Legg til prosjektspesifikke pakker her.
 % Ikke sett pakker andre steder i filen.
-% =================================================
+% ============================================================
 
 \usepackage{amsmath, amssymb}        % matematikk
 \usepackage{graphicx}                % figurer
@@ -43,25 +46,26 @@
 \usepackage{booktabs}                % tabeller
 
 
-% =================================================
+% ============================================================
 % EGENDEFINERTE KOMMANDOER
 %
 % Prosjektspesifikke makroer.
-% =================================================
+% ============================================================
 
+% Oppreist d og i:
 % \newcommand{\dd}{\mathrm{d}}
 % \newcommand{\ii}{\mathrm{i}}
 
 
-% =================================================
+% ============================================================
 % DOKUMENT
-% =================================================
+% ============================================================
 \begin{document}
 
 
-% =================================================
+% ============================================================
 % FRONTMATERIALE
-% =================================================
+% ============================================================
 \frontmatter
 \pagenumbering{roman}
 \pagestyle{frontmatterstyle}
@@ -127,9 +131,9 @@ en uttømmende. To til fire avsnitt er typisk.
 \cleardoublepage
 
 
-% =================================================
+% ============================================================
 % HOVEDMATERIALE
-% =================================================
+% ============================================================
 \mainmatter
 \pagestyle{chapterstyle}
 
@@ -164,9 +168,9 @@ før de møter det tekniske stoffet.
 \part{Tredje del}
 
 
-% =================================================
+% ============================================================
 % BAKMATERIALE
-% =================================================
+% ============================================================
 \backmatter
 
 % ------------------ Bibliografi -------------------

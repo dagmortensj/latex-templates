@@ -1,41 +1,44 @@
-% =================================================
-% MAIN DOCUMENT (BOOK TEMPLATE)
-% =================================================
+% ============================================================
+% main.tex — the book itself
 %
-% This file defines the logical and structural layout
-% of the book.
+% This file is structure and content. Every typographic
+% decision lives in bookstyle.sty.
 %
-% Typographic appearance is defined entirely in
-% bookstyle.sty and should not be altered here.
-%
-% =================================================
-
-
-% ------------------ Draft / writing ---------------
-\documentclass[11pt,twoside,a4paper]{book}
+% Compile with pdfLaTeX:
+%   latexmk main
+% ============================================================
 
 % ------------------ Final print -------------------
-% \documentclass[11pt,twoside,b5paper]{book}
+\documentclass[11pt,twoside,b5paper]{book}
+
+% ------------------ Draft / writing ---------------
+% The same measure and line breaking as B5, with over 4cm
+% of margin for notes.
+% \documentclass[11pt,twoside,a4paper]{book}
 
 
-% =================================================
+% ============================================================
 % LOAD BOOK STYLE
-% =================================================
+% ============================================================
 \usepackage{bookstyle}
 
+% Page proofs — the B5 page untouched, centred on A4 with
+% crop marks (requires b5paper above). Replace the line above with:
+% \usepackage[proof]{bookstyle}
 
-% =================================================
+
+% ============================================================
 % LANGUAGE
-% =================================================
+% ============================================================
 \usepackage[english]{babel}
 
 
-% =================================================
+% ============================================================
 % CUSTOM PACKAGES
 %
 % Add project-specific packages here.
-% Do not insert packages elsewhere in the file.
-% =================================================
+% Do not load packages anywhere else in the file.
+% ============================================================
 
 \usepackage{amsmath, amssymb}        % mathematics
 \usepackage{graphicx}                % figures
@@ -43,25 +46,26 @@
 \usepackage{booktabs}                % tables
 
 
-% =================================================
+% ============================================================
 % CUSTOM COMMANDS
 %
 % Project-specific macros.
-% =================================================
+% ============================================================
 
+% Upright d and i:
 % \newcommand{\dd}{\mathrm{d}}
 % \newcommand{\ii}{\mathrm{i}}
 
 
-% =================================================
+% ============================================================
 % DOCUMENT
-% =================================================
+% ============================================================
 \begin{document}
 
 
-% =================================================
+% ============================================================
 % FRONT MATTER
-% =================================================
+% ============================================================
 \frontmatter
 \pagenumbering{roman}
 \pagestyle{frontmatterstyle}
@@ -126,9 +130,9 @@ exhaustive one. Two to four paragraphs is typical.
 \cleardoublepage
 
 
-% =================================================
+% ============================================================
 % MAIN MATTER
-% =================================================
+% ============================================================
 \mainmatter
 \pagestyle{chapterstyle}
 
@@ -164,9 +168,9 @@ encounter the technical material.
 \part{Third Part}
 
 
-% =================================================
+% ============================================================
 % BACK MATTER
-% =================================================
+% ============================================================
 \backmatter
 
 % ------------------ Bibliography -----------------
