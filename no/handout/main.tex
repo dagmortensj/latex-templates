@@ -14,8 +14,14 @@
 
 % ============================================================
 % LAST INN HANDOUT-STIL
+%
+% Med [unummerert] mister seksjonene nummeret sitt, og
+% oppgaver og teoremer telles flatt gjennom dokumentet:
+% Oppgave 1, 2, 3 i stedet for 1.1, 1.2. Passer en handout
+% som handler om én ting.
 % ============================================================
 \usepackage{handoutstyle}
+% \usepackage[unummerert]{handoutstyle}
 
 
 % ============================================================
@@ -216,6 +222,7 @@ størrelsen $a_s = v^2/r$, rettet inn mot sentrum av sirkelen.
 % OPPGAVE
 % ============================================================
 \begin{oppgave}[Sirkulær bane]
+\label{opg:bane}
 En satellitt går i en sirkulær bane med radius $r$ rundt en
 planet med masse $M$.
 
@@ -234,7 +241,7 @@ planet med masse $M$.
 
 \verb|python|-omgivelsen setter kode med Gruvbox Light
 syntaksutheving. Det korte skriptet nedenfor verifiserer
-banehastigheten og omløpstiden fra oppgave~3 numerisk for
+banehastigheten og omløpstiden fra oppgave~\ref{opg:bane} numerisk for
 tre representative radier.
 
 \begin{python}

@@ -14,8 +14,14 @@
 
 % ============================================================
 % LOAD HANDOUT STYLE
+%
+% With [unnumbered] the sections lose their numbers, and
+% exercises and theorems count flat through the document:
+% Exercise 1, 2, 3 instead of 1.1, 1.2. Suits a handout
+% about a single topic.
 % ============================================================
 \usepackage{handoutstyle}
+% \usepackage[unnumbered]{handoutstyle}
 
 
 % ============================================================
@@ -216,6 +222,7 @@ circle.
 % EXERCISE
 % ============================================================
 \begin{exercise}[Circular orbit]
+\label{ex:orbit}
 A satellite moves in a circular orbit at radius $r$ around a
 planet of mass $M$.
 
@@ -235,7 +242,7 @@ planet of mass $M$.
 
 The \verb|python| environment typesets code with Gruvbox Light
 syntax highlighting. The short script below verifies the orbital
-speed and period from Exercise~3 numerically for three representative
+speed and period from Exercise~\ref{ex:orbit} numerically for three representative
 radii.
 
 \begin{python}
