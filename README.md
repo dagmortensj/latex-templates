@@ -14,8 +14,8 @@ version in `no/`:
 |-------------|--------------------------|-----------------------------------------------------------------------------|
 | **book**    | CUP-style monograph      | parts, chapters, drop caps, superscript citations                           |
 | **ffv**     | JHEP two-column article  | STIX2 typography, numbered citations                                        |
-| **handout** | Problem sheets           | theorem environments, exercises, python code                                |
-| **notes**   | CUP-style lecture notes  | theorem environments, exercises, python code; framed TOC, numbered citations|
+| **handout** | Problem sheets           | theorem environments, exercises, emphasis boxes, python code; optional unnumbered mode |
+| **notes**   | CUP-style lecture notes  | theorem environments, exercises, emphasis boxes, python code; framed TOC, numbered citations|
 
 All templates include figure and table support.
 
