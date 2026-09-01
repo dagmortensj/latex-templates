@@ -36,10 +36,20 @@
 % in lualatex-templates: the same layout, but with Latin
 % Modern in place of the OpenType fonts, which need LuaLaTeX.
 %
-% The order below: fonts, microtypography, geometry,
-% spacing, sectioning, page furniture, citations, and
-% hyperref last.
+% The order below: language, fonts, microtypography,
+% geometry, spacing, sectioning, page furniture,
+% citations, and hyperref last.
 % ============================================================
+
+
+% ============================================================
+% LANGUAGE
+%
+% babel is loaded here and not in main.tex, so that loading
+% the style is enough to get hyphenation and punctuation
+% right. Switch language on the line below.
+% ============================================================
+\RequirePackage[english]{babel}
 
 
 % ============================================================

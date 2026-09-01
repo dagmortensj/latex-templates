@@ -228,25 +228,6 @@ The `[theorem]` argument means the new environment shares
 the theorem counter — keeps numbering coherent across the
 document.
 
-## Localizing labels
-
-`notesstyle.sty` sets the structured-environment labels in
-English by default. To adapt this English template to another
-language, override any of them *before* loading the style:
-
-```latex
-\providecommand{\theoremname}{Teorem}
-\providecommand{\definitionname}{Definisjon}
-\providecommand{\remarkname}{Merknad}
-\providecommand{\exercisename}{Oppgave}
-\usepackage{notesstyle}
-```
-
-(If you just want Norwegian, use the bundled `no/notat`
-template instead — it ships fully localized, with the theorem
-and exercise environments defined under Norwegian names rather
-than via these override hooks.)
-
 ## BibTeX sources
 
 - **Google Scholar** → Cite → BibTeX

@@ -18,10 +18,21 @@
 % i lualatex-templates: samme oppsett, med Latin Modern i
 % stedet for OpenType-fonten, som krever LuaLaTeX.
 %
-% Rekkefølgen nedenfor: fonter, farger, geometri, avstander,
-% seksjonering med slukeregel, sidemøblering, strukturerte
-% omgivelser, siteringer, viktig-bokser, hyperref sist.
+% Rekkefølgen nedenfor: språk, fonter, farger, geometri,
+% avstander, seksjonering med slukeregel, sidemøblering,
+% strukturerte omgivelser, siteringer, viktig-bokser,
+% hyperref sist.
 % ============================================================
+
+
+% ============================================================
+% SPRÅK
+%
+% babel lastes her og ikke i main.tex, slik at det å laste
+% stilen er nok til å få orddeling og tegnsetting riktig.
+% Bytt språk på linja under.
+% ============================================================
+\RequirePackage[norsk]{babel}
 
 
 % ============================================================
