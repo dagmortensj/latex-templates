@@ -68,6 +68,19 @@ gjennom hele dokumentet — Oppgave 1, 2, 3 og Teorem 1, 2, 3 i
 stedet for 1.1, 1.2. Alt annet (fonter, luft, overskriftsstil)
 er uendret. Uten valget oppfører malen seg som før.
 
+### Blokkavsnitt
+
+```latex
+\usepackage[blokkavsnitt]{handoutstyle}
+```
+
+Avsnitt skilt med luft i stedet for innrykk: en halv grunnlinje
+mellom dem, og ingen innrykk. Passer en handout som er mest
+oppgaver og korte instrukser. Tittelblokka og oppgavehodet
+holder samme avstander som ellers. Valgene kan kombineres:
+`[unummerert,blokkavsnitt]`. Ikke last `parskip`-pakka i
+tillegg — valget gjør jobben.
+
 ### Teoremomgivelser
 
 ```latex
@@ -191,7 +204,8 @@ Typisk bruk:
 - **Font:** MLModern (T1)
 - **Sideoppsett:** A4, symmetriske marger (3.0 cm V/H)
 - **Linjeavstand:** 1.04
-- **Avsnitt:** innrykk, ikke linjeskift
+- **Avsnitt:** innrykk, ikke linjeskift — eller luft (en halv
+  grunnlinje) i stedet for innrykk med `[blokkavsnitt]`
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
 - **Overskrifter:** to stille nivåer — seksjon (`\large`) og underseksjon (kroppsstørrelse), fet; ingen overdimensjonerte fonter eller streker. Underseksjonen gjør at handout-en også kan brukes som forelesningsnotater.
 - **Tittelblokk:** kapiteler, sperret, sentrert
