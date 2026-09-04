@@ -88,6 +88,8 @@ vertikale streker.
 - **Font:** STIX2 (tekst og matematikk)
 - **Referanser:** nummererte i siteringsrekkefølge (`unsrtnat`)
 - **Avsnitt:** innrykk, ikke linjeskift
+- **Align-rader:** `\jot` = 8 pt (standard er 3 pt) — mer luft mellom
+  radene i `align`, felles for alle malene
 - **Språk:** norsk orddeling og tegnsetting via `babel`
 - **Tabeller:** booktabs-stil uten vertikale streker
 - **Figurer:** figurtekst i small med fet etikett

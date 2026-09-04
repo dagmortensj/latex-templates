@@ -206,6 +206,8 @@ Typical usage:
 - **Font:** MLModern (T1)
 - **Page size:** A4, symmetric margins (3.0 cm L/R)
 - **Line spacing:** 1.04
+- **Align rows:** `\jot` = 8 pt (default 3 pt) — more air between the
+  rows of `align`, shared by all the templates
 - **Paragraphs:** indented, no line break — or space (half a
   baseline) instead of indentation with `[blockparagraphs]`
 - **Microtypography:** protrusion, expansion, tracking enabled

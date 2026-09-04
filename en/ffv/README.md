@@ -88,6 +88,8 @@ vertical lines.
 - **Font:** STIX2 (text and mathematics)
 - **References:** numbered in citation order (`unsrtnat`)
 - **Paragraphs:** indented, no line break
+- **Align rows:** `\jot` = 8 pt (default 3 pt) — more air between the
+  rows of `align`, shared by all the templates
 - **Language:** English hyphenation and punctuation via `babel`
 - **Tables:** booktabs style without vertical lines
 - **Figures:** caption in small with bold label

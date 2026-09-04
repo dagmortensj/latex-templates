@@ -101,6 +101,8 @@ vertikale streker.
   vindu på 1,8–2,4, samme mål som lualatex-boka
 - **Marger:** innside 2,6 cm, utside 3,4 cm, topp 2,6 cm, bunn 3,9 cm
 - **Linjeavstand:** 1.07
+- **Align-rader:** `\jot` = 8 pt (standard er 3 pt) — mer luft mellom
+  radene i `align`, felles for alle malene
 - **Avsnitt:** innrykk, ikke linjeskift
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
 - **Seksjoner:** unummererte, men i innholdsfortegnelse

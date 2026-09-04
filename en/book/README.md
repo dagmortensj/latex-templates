@@ -101,6 +101,8 @@ vertical lines.
   1.8–2.4 window, the same measure as the lualatex book
 - **Margins:** inner 2.6 cm, outer 3.4 cm, top 2.6 cm, bottom 3.9 cm
 - **Line spacing:** 1.07
+- **Align rows:** `\jot` = 8 pt (default 3 pt) — more air between the
+  rows of `align`, shared by all the templates
 - **Paragraphs:** indented, no line break
 - **Microtypography:** protrusion, expansion, tracking enabled
 - **Sections:** unnumbered, but appear in TOC

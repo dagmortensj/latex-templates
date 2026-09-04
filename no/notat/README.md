@@ -205,6 +205,8 @@ vertikale streker.
 - **Font:** MLModern (T1)
 - **Sideoppsett:** A4, symmetriske marger (3.0 cm V/H)
 - **Linjeavstand:** 1.07
+- **Align-rader:** `\jot` = 8 pt (standard er 3 pt) — mer luft mellom
+  radene i `align`, felles for alle malene
 - **Avsnitt:** innrykk, ikke linjeskift
 - **Mikrotypografi:** protrusion, expansion, tracking aktivert
 - **Seksjoner:** nummererte, fete overskrifter
